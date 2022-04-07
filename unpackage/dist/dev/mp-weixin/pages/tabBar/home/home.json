@@ -1,5 +1,10 @@
 {
   "usingComponents": {
-    "u-button": "/node-modules/uview-ui/components/u-button/u-button"
+    "u--input": "/node-modules/uview-ui/components/u--input/u--input",
+    "u-grid": "/node-modules/uview-ui/components/u-grid/u-grid",
+    "u-grid-item": "/node-modules/uview-ui/components/u-grid-item/u-grid-item",
+    "u--image": "/node-modules/uview-ui/components/u--image/u--image",
+    "u-toast": "/node-modules/uview-ui/components/u-toast/u-toast",
+    "u-swiper": "/node-modules/uview-ui/components/u-swiper/u-swiper"
   }
 }

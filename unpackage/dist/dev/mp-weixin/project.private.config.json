@@ -1,4 +1,5 @@
 {
+    "setting": {},
     "condition": {
         "plugin": {
             "list": []
@@ -12,8 +13,8 @@
         "miniprogram": {
             "list": [
                 {
-                    "name": "pages/tabBar/my/my",
-                    "pathName": "pages/tabBar/my/my",
+                    "name": "pages/tabBar/home/home",
+                    "pathName": "pages/tabBar/home/home",
                     "query": "",
                     "scene": null
                 }

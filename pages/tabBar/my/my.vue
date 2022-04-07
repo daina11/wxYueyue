@@ -1,16 +1,38 @@
 <template>
 	<view class="">
-		<u-avatar :src="avatarscr" shape="circle" size="80"></u-avatar>
-		<u-cell-group title-bg-color="rgb(246, 103, 7)">
-			<u-cell icon="order" title="我的订单" iconStyle="color:#b6292f" rightIconStyle="color:#b6292f"
-				titleStyle="color:#909193" isLink></u-cell>
-			<u-cell class="chatwe" icon="chat" title="联系我们" iconStyle="color:#b6292f" rightIconStyle="color:#b6292f"
-				titleStyle="color:#909193" isLink>
-				<text slot="value" class="u-slot-value">121293</text>
-			</u-cell>
-			<u-cell icon="info-circle" iconStyle="color:#b6292f" title="关于我们" rightIconStyle="color:#b6292f"
-				titleStyle="color:#909193" isLink></u-cell>
-		</u-cell-group>
+
+		<view class="top-row">
+			<u-row>
+				<u-col span="3">
+					<view class="avatar">
+						<u-avatar :src="avatarscr" shape="circle" size="80"></u-avatar>
+					</view>
+				</u-col>
+				<u-col span="9">
+					<u-row>
+						<view class="nickname">{{nickname}}</view>
+					</u-row>
+					<u-row>
+						<view class="city">
+							上海
+						</view>
+					</u-row>
+				</u-col>
+			</u-row>
+		</view>
+
+		<view class="list">
+			<u-cell-group title-bg-color="rgb(246, 103, 7)" class="cell-bar">
+				<u-cell icon="order" title="我的订单" iconStyle="color:#b6292f" rightIconStyle="color:#b6292f"
+					titleStyle="color:#909193" isLink></u-cell>
+				<u-cell class="chatwe" icon="chat" title="联系我们" iconStyle="color:#b6292f" rightIconStyle="color:#b6292f"
+					titleStyle="color:#909193" isLink>
+					<text slot="value" class="u-slot-value">121293</text>
+				</u-cell>
+				<u-cell icon="info-circle" iconStyle="color:#b6292f" title="关于我们" rightIconStyle="color:#b6292f"
+					titleStyle="color:#909193" isLink></u-cell>
+			</u-cell-group>
+		</view>
 	</view>
 </template>
 
@@ -19,7 +41,7 @@
 		data() {
 			return {
 				avatarscr: '',
-				
+
 			}
 		},
 		computed: {
@@ -52,6 +74,29 @@
 </script>
 
 <style lang="scss" scoped>
+	.top-row {
+		border-radius: 4px;
+		margin: 10px;
+		padding: 10px;
+		background: linear-gradient(690deg, #ffff, #fcedfa);
+	}
+	.nickname{
+		color: $u-content-color;
+		font-size: 30px;
+		padding-left: 3%;
+	}
+	.city{
+		color:$u-tips-color ;
+		padding-top: 1%;
+		padding-left: 3%;
+	}
+	.list {
+		background-color: #FFFFFF;
+		border-radius: 4px;
+		margin-top: 20px;
+		//padding-top: 15px;
+	}
+
 	.u-slot-value {
 		color: #909193;
 	}

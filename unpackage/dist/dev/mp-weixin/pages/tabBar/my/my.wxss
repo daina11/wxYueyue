@@ -24,6 +24,27 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
+.top-row.data-v-22ae75d7 {
+  border-radius: 4px;
+  margin: 10px;
+  padding: 10px;
+  background: linear-gradient(690deg, #ffff, #fcedfa);
+}
+.nickname.data-v-22ae75d7 {
+  color: #606266;
+  font-size: 30px;
+  padding-left: 3%;
+}
+.city.data-v-22ae75d7 {
+  color: #909193;
+  padding-top: 1%;
+  padding-left: 3%;
+}
+.list.data-v-22ae75d7 {
+  background-color: #FFFFFF;
+  border-radius: 4px;
+  margin-top: 20px;
+}
 .u-slot-value.data-v-22ae75d7 {
   color: #909193;
 }

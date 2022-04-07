@@ -1,0 +1,1 @@
+<view><u-button bind:click="__e" vue-id="6a0e5eef-1" data-event-opts="{{[['^click',[['r']]]]}}" bind:__l="__l" vue-slots="{{['default']}}">dian</u-button></view>

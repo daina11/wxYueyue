@@ -1,0 +1,36 @@
+{
+    "pages": [
+        "pages/tabBar/home/home",
+        "pages/tabBar/my/my",
+        "pages/index/index"
+    ],
+    "subPackages": [],
+    "window": {
+        "navigationBarTextStyle": "black",
+        "navigationBarTitleText": "预约",
+        "navigationBarBackgroundColor": "#F8F8F8",
+        "backgroundColor": "#F8F8F8"
+    },
+    "tabBar": {
+        "color": "#808080",
+        "selectedColor": "#DD524D",
+        "backgroundColor": "#FFFFFF",
+        "borderStyle": "black",
+        "list": [
+            {
+                "pagePath": "pages/tabBar/home/home",
+                "text": "首页",
+                "iconPath": "static/home.png",
+                "selectedIconPath": "static/home-s.png"
+            },
+            {
+                "pagePath": "pages/tabBar/my/my",
+                "text": "我的",
+                "iconPath": "static/my.png",
+                "selectedIconPath": "static/my-s.png"
+            }
+        ]
+    },
+    "usingComponents": {},
+    "sitemapLocation": "sitemap.json"
+}

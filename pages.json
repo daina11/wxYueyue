@@ -1,0 +1,45 @@
+{
+	"easycom": {
+			"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
+		},
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path":"pages/tabBar/home/home"
+			
+		},{
+			"path":"pages/tabBar/my/my"
+		},
+		{
+			"path":"pages/index/index"
+		}
+	    
+    ],
+	"tabBar":{
+		"color":"#808080",
+		"selectedColor":"#DD524D",
+		"backgroundColor":"#FFFFFF",
+		"borderStyle":"black",
+		"list":[
+			{
+				"pagePath":"pages/tabBar/home/home",
+				"text":"首页",
+				"iconPath":"static/home.png",
+				"selectedIconPath":"static/home-s.png"
+			},
+			{
+				"pagePath":"pages/tabBar/my/my",
+				"text":"我的",
+				"iconPath":"static/my.png",
+				"selectedIconPath":"static/my-s.png"
+			}
+		]
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "预约",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	
+		
+	}
+}

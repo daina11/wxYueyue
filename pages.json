@@ -11,8 +11,20 @@
 		},
 		{
 			"path":"pages/index/index"
+		},
+		{
+			"path":"pages/tabBar/hot/hot"
 		}
 	    
+        ,{
+            "path" : "pages/shopindex/shopindex",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"tabBar":{
 		"color":"#808080",
@@ -25,6 +37,12 @@
 				"text":"首页",
 				"iconPath":"static/home.png",
 				"selectedIconPath":"static/home-s.png"
+			},
+			{
+				"pagePath":"pages/tabBar/hot/hot",
+				"text":"热门",
+				"iconPath":"static/hot.png",
+				"selectedIconPath":"static/hot-s.png"
 			},
 			{
 				"pagePath":"pages/tabBar/my/my",

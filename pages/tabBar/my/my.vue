@@ -23,7 +23,9 @@
 
 		<view class="list">
 			<u-cell-group title-bg-color="rgb(246, 103, 7)" class="cell-bar">
-				<u-cell icon="order" title="我的订单" iconStyle="color:#b6292f" rightIconStyle="color:#b6292f"
+				<u-cell icon="order" title="我的预约" iconStyle="color:#b6292f" rightIconStyle="color:#b6292f"
+					titleStyle="color:#909193" isLink></u-cell>
+				<u-cell icon="order" title="个人中心" iconStyle="color:#b6292f" rightIconStyle="color:#b6292f"
 					titleStyle="color:#909193" isLink></u-cell>
 				<u-cell class="chatwe" icon="chat" title="联系我们" iconStyle="color:#b6292f" rightIconStyle="color:#b6292f"
 					titleStyle="color:#909193" isLink>
@@ -80,16 +82,19 @@
 		padding: 10px;
 		background: linear-gradient(690deg, #ffff, #fcedfa);
 	}
-	.nickname{
+
+	.nickname {
 		color: $u-content-color;
 		font-size: 30px;
 		padding-left: 3%;
 	}
-	.city{
-		color:$u-tips-color ;
+
+	.city {
+		color: $u-tips-color;
 		padding-top: 1%;
 		padding-left: 3%;
 	}
+
 	.list {
 		background-color: #FFFFFF;
 		border-radius: 4px;

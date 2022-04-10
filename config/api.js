@@ -6,3 +6,5 @@ export const sda = (params, config = {}) => http.get('/wx/user/login', params, c
 export const auth = (data) => http.post('wx/user/postAuth', data)
 export const getcategory = (data) => http.get('wx/other/getcategory',data)
 export const getswiper = (data) => http.get('wx/other/getswiper',data)
+//首页获取商店列表
+export const getshop = (data) => http.get('wx/other/getshop',data)

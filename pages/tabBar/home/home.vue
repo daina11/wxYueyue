@@ -1,8 +1,8 @@
 <template>
 	<view class="content">
 		<view class="serch">
-			<u--input placeholder="请输入搜索内容" shape="circle" suffixIcon="search" suffixIconStyle="color: #b6292f">
-			</u--input>
+			<u-search v-model="slable" :clearabled="true" searchIconColor="#b6292f" @custom="search()" @search="search()" bgColor="#FFFFFF" borderColor="#b6292f" placeholder="请输入搜索内容"  @click="search()" shape="round" actionText="搜索">
+			</u-search>
 		</view>
 
 		<view class="category">
@@ -16,7 +16,11 @@
 		</view>
 
 		<view class="switch">
-			<u-swiper :list="switchlist" keyName="imgurl" indicator indicatorMode="dot" current="id"
+			<u-swiper :list="switchlist" keyName="imgurl" indicator indicatorMode="dot" current="id"  previousMargin="30"
+                nextMargin="30"
+                circular
+                :autoplay="true"
+                radius="5"
 				@click="clickswitch()" circular>
 			</u-swiper>
 		</view>
@@ -25,7 +29,7 @@
 			<view class="card-group">
 				<uni-card class="uc" is-full="true" :cover="listItem.imgurl" v-for="(listItem,listIndex) in shoplist"
 					:key="listIndex" @click="to_detail(listItem.id)">
-					<text class="c-text">{{listItem.des}}</text>
+					<text class="c-text">{{listItem.title}}</text>
 					<view class="b-text">
 						<text class="price">￥{{listItem.price}}</text><text
 							class="yy">{{listItem.subscribeStatus.name}}</text>
@@ -59,7 +63,8 @@
 				scrollTop: 0,
 				iconStyle: {
 					color: '#FFFFFF'
-				}
+				},
+				slable:''
 			}
 		},
 		onPageScroll(e) {
@@ -83,11 +88,14 @@
 					}).catch(() => {
 
 					})
-				}, 1000)
+				}, 800)
 
 			}
 		},
 		onLoad() {
+			uni.setNavigationBarTitle({
+				title: '预餐首页'
+			});
 			getcategory({}).then((res) => {
 					this.categorylist = res
 				}).catch(() => {
@@ -115,9 +123,33 @@
 		methods: {
 			categoryDetail(name) {
 				//console.log(name)
+				uni.$u.route({
+					url: 'pages/fenleiindex/fenleiindex',
+					params: {
+						id:name
+					}
+				})
 			},
+			//搜索
+			search(value){
+				uni.$u.route({
+					url: 'pages/searchindex/searchindex',
+					params: {
+						searchword:this.slable
+					}
+				})
+			},
+			
+			
 			clickswitch(id) {
-				console.log(this.switchlist[id].shopId)
+				
+				uni.$u.route({
+					url: 'pages/shopindex/shopindex',
+					params: {
+						id:this.switchlist[id].shopId
+					}
+				})
+				
 			},
 			to_detail(id) {
 				uni.$u.route({
@@ -180,7 +212,7 @@
 		margin: 15px 5px 15px 5px;
 
 		.u-swiper {
-			border-radius: 20px !important;
+	
 		}
 	}
 
@@ -194,14 +226,4 @@
 		}
 	}
 
-	/deep/ .serch {
-		background-color: #FFFFFF;
-		border-radius: 20px;
-		margin-top: 20px;
-
-		.u-border {
-			border-color: #b6292f !important;
-		}
-
-	}
 </style>

@@ -38,6 +38,9 @@ const store = new Vuex.Store({
 		vuex_version: '1.0.1',
 		nickname:lifeData.nickname ? lifeData.nickname:"",
 		avatarurl:lifeData.avatarurl ? lifeData.avatarurl:"",
+		openid:lifeData.openid ? lifeData.openid:"",
+		city:lifeData.city ? lifeData.city:"",
+		//phone:lifeData.phone ? lifeData.phone:"",
 		//是否需要授权
 		needAuth:true,
 		//登录状态
@@ -78,7 +81,6 @@ const store = new Vuex.Store({
 						// console.log(res) 
 						var oid=res.openid
 						if(res.nickname==null){
-							console.log("空") 
 							uni.showModal({
 								title: '提示！',
 								content: '用户未授权，是否去授权',
@@ -95,6 +97,13 @@ const store = new Vuex.Store({
 													//把用户信息保存到vuex
 													store.state.nickname=res.nickname
 													store.state.avatarurl=res.avatarurl
+													store.state.openid=res.openid
+													store.state.city=res.city
+													//store.state.phone=res.phone
+													uni.showToast({
+														title: '授权成功！',
+														duration: 2000
+													});
 													// console.log(store.state.nickname)
 													// console.log(store.state.avatarurl)
 												}).catch(() =>{
@@ -118,7 +127,10 @@ const store = new Vuex.Store({
 							// console.log(this.state)
 							store.state.nickname=res.nickname
 							store.state.avatarurl=res.avatarurl
-							// console.log(store.state.nickname)
+							store.state.openid=res.openid
+							store.state.city=res.city
+							//store.state.phone=res.phone
+							// console.log(store.state.phone)
 							// console.log(store.state.avatarurl)
 						}
 					}).catch(()=>{

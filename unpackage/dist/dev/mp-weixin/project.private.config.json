@@ -17,6 +17,54 @@
                     "pathName": "pages/tabBar/home/home",
                     "query": "",
                     "scene": null
+                },
+                {
+                    "name": "pages/shopindex/shopindex",
+                    "pathName": "pages/shopindex/shopindex",
+                    "query": "id=1",
+                    "scene": null
+                },
+                {
+                    "name": "pages/yuyueindex/yuyueindex",
+                    "pathName": "pages/yuyueindex/yuyueindex",
+                    "query": "oid=oSDjr4uMf93QGPWkbvptJjHUKLIE&shopid=1",
+                    "scene": null
+                },
+                {
+                    "name": "pages/tabBar/hot/hot",
+                    "pathName": "pages/tabBar/hot/hot",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/searchindex/searchindex",
+                    "pathName": "pages/searchindex/searchindex",
+                    "query": "searchword=喜茶",
+                    "scene": null
+                },
+                {
+                    "name": "pages/fenleiindex/fenleiindex",
+                    "pathName": "pages/fenleiindex/fenleiindex",
+                    "query": "id=1",
+                    "scene": null
+                },
+                {
+                    "name": "pages/myinfo/myinfo",
+                    "pathName": "pages/myinfo/myinfo",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/myorder/myorder",
+                    "pathName": "pages/myorder/myorder",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/tabBar/my/my",
+                    "pathName": "pages/tabBar/my/my",
+                    "query": "",
+                    "scene": null
                 }
             ]
         }

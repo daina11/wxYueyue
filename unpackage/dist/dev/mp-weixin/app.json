@@ -4,7 +4,12 @@
     "pages/tabBar/my/my",
     "pages/index/index",
     "pages/tabBar/hot/hot",
-    "pages/shopindex/shopindex"
+    "pages/shopindex/shopindex",
+    "pages/yuyueindex/yuyueindex",
+    "pages/searchindex/searchindex",
+    "pages/fenleiindex/fenleiindex",
+    "pages/myorder/myorder",
+    "pages/aboutus/aboutus"
   ],
   "subPackages": [],
   "window": {

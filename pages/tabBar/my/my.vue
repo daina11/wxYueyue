@@ -14,7 +14,7 @@
 					</u-row>
 					<u-row>
 						<view class="city">
-							上海
+							{{city}}
 						</view>
 					</u-row>
 				</u-col>
@@ -23,15 +23,15 @@
 
 		<view class="list">
 			<u-cell-group title-bg-color="rgb(246, 103, 7)" class="cell-bar">
-				<u-cell icon="order" title="我的预约" iconStyle="color:#b6292f" rightIconStyle="color:#b6292f"
+				<u-cell icon="order" title="我的预约" url="/pages/myorder/myorder" iconStyle="color:#b6292f" rightIconStyle="color:#b6292f"
 					titleStyle="color:#909193" isLink></u-cell>
-				<u-cell icon="order" title="个人中心" iconStyle="color:#b6292f" rightIconStyle="color:#b6292f"
-					titleStyle="color:#909193" isLink></u-cell>
-				<u-cell class="chatwe" icon="chat" title="联系我们" iconStyle="color:#b6292f" rightIconStyle="color:#b6292f"
+				<!-- <u-cell icon="order" title="个人中心"  url="/pages/myinfo/myinfo" iconStyle="color:#b6292f" rightIconStyle="color:#b6292f"
+					titleStyle="color:#909193" isLink></u-cell> -->
+				<u-cell class="chatwe" icon="chat" title="联系我们"   iconStyle="color:#b6292f" rightIconStyle="color:#b6292f"
 					titleStyle="color:#909193" isLink>
 					<text slot="value" class="u-slot-value">121293</text>
 				</u-cell>
-				<u-cell icon="info-circle" iconStyle="color:#b6292f" title="关于我们" rightIconStyle="color:#b6292f"
+				<u-cell icon="info-circle" url="/pages/aboutus/aboutus" iconStyle="color:#b6292f" title="关于我们" rightIconStyle="color:#b6292f"
 					titleStyle="color:#909193" isLink></u-cell>
 			</u-cell-group>
 		</view>
@@ -57,7 +57,9 @@
 
 		},
 		onLoad() {
-
+		uni.setNavigationBarTitle({
+			title: '个人中心'
+		});
 		},
 		onReady() {},
 		onShow() {

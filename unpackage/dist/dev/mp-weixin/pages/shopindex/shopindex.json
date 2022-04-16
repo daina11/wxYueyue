@@ -1,5 +1,12 @@
 {
   "navigationBarTitleText": "",
   "enablePullDownRefresh": false,
-  "usingComponents": {}
+  "usingComponents": {
+    "uni-card": "/uni_modules/uni-card/components/uni-card/uni-card",
+    "u-tag": "/node-modules/uview-ui/components/u-tag/u-tag",
+    "u-icon": "/node-modules/uview-ui/components/u-icon/u-icon",
+    "u-parse": "/node-modules/uview-ui/components/u-parse/u-parse",
+    "u-tabbar": "/node-modules/uview-ui/components/u-tabbar/u-tabbar",
+    "u-tabbar-item": "/node-modules/uview-ui/components/u-tabbar-item/u-tabbar-item"
+  }
 }

@@ -8825,6 +8825,9 @@ var store = new _vuex.default.Store({
     vuex_version: '1.0.1',
     nickname: lifeData.nickname ? lifeData.nickname : "",
     avatarurl: lifeData.avatarurl ? lifeData.avatarurl : "",
+    openid: lifeData.openid ? lifeData.openid : "",
+    city: lifeData.city ? lifeData.city : "",
+    //phone:lifeData.phone ? lifeData.phone:"",
     //是否需要授权
     needAuth: true,
     //登录状态
@@ -8865,7 +8868,6 @@ var store = new _vuex.default.Store({
             // console.log(res) 
             var oid = res.openid;
             if (res.nickname == null) {
-              console.log("空");
               uni.showModal({
                 title: '提示！',
                 content: '用户未授权，是否去授权',
@@ -8882,6 +8884,13 @@ var store = new _vuex.default.Store({
                           //把用户信息保存到vuex
                           store.state.nickname = res.nickname;
                           store.state.avatarurl = res.avatarurl;
+                          store.state.openid = res.openid;
+                          store.state.city = res.city;
+                          //store.state.phone=res.phone
+                          uni.showToast({
+                            title: '授权成功！',
+                            duration: 2000 });
+
                           // console.log(store.state.nickname)
                           // console.log(store.state.avatarurl)
                         }).catch(function () {
@@ -8905,7 +8914,10 @@ var store = new _vuex.default.Store({
               // console.log(this.state)
               store.state.nickname = res.nickname;
               store.state.avatarurl = res.avatarurl;
-              // console.log(store.state.nickname)
+              store.state.openid = res.openid;
+              store.state.city = res.city;
+              //store.state.phone=res.phone
+              // console.log(store.state.phone)
               // console.log(store.state.avatarurl)
             }
           }).catch(function () {
@@ -19393,7 +19405,7 @@ module.exports = function (vm) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.getshop = exports.getswiper = exports.getcategory = exports.auth = exports.sda = void 0;var http = uni.$u.http;
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.delorder = exports.getordersuccess = exports.getorderunsuccess = exports.search = exports.hotlist = exports.postorder = exports.getshopbyid = exports.getshop = exports.getswiper = exports.getcategory = exports.auth = exports.sda = void 0;var http = uni.$u.http;
 // post请求，获取菜单
 var sda = function sda(params) {var config = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};return http.get('/wx/user/login', params, config);};
 
@@ -19403,6 +19415,17 @@ var getcategory = function getcategory(data) {return http.get('wx/other/getcateg
 var getswiper = function getswiper(data) {return http.get('wx/other/getswiper', data);};
 //首页获取商店列表
 exports.getswiper = getswiper;var getshop = function getshop(data) {return http.get('wx/other/getshop', data);};exports.getshop = getshop;
+var getshopbyid = function getshopbyid(data) {return http.get('wx/other/getshopbyid', data);};exports.getshopbyid = getshopbyid;
+
+
+var postorder = function postorder(data) {return http.post('/wx/other/postorder', data);};exports.postorder = postorder;
+
+var hotlist = function hotlist(data) {return http.get('/wx/other/hotlist', data);};exports.hotlist = hotlist;
+var search = function search(data) {return http.get('/wx/other/search', data);};exports.search = search;
+
+var getorderunsuccess = function getorderunsuccess(data) {return http.get('/wx/other/getorderunsuccess', data);};exports.getorderunsuccess = getorderunsuccess;
+var getordersuccess = function getordersuccess(data) {return http.get('/wx/other/getordersuccess', data);};exports.getordersuccess = getordersuccess;
+var delorder = function delorder(data) {return http.get('/wx/other/delorder', data);};exports.delorder = delorder;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
@@ -19433,202 +19456,182 @@ exports.getswiper = getswiper;var getshop = function getshop(data) {return http.
 /* 171 */,
 /* 172 */,
 /* 173 */,
-/* 174 */
-/*!***************************************************************************************!*\
-  !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/components/u-input/props.js ***!
-  \***************************************************************************************/
+/* 174 */,
+/* 175 */,
+/* 176 */,
+/* 177 */,
+/* 178 */,
+/* 179 */,
+/* 180 */,
+/* 181 */,
+/* 182 */,
+/* 183 */,
+/* 184 */,
+/* 185 */,
+/* 186 */,
+/* 187 */,
+/* 188 */,
+/* 189 */,
+/* 190 */,
+/* 191 */,
+/* 192 */,
+/* 193 */,
+/* 194 */,
+/* 195 */,
+/* 196 */,
+/* 197 */,
+/* 198 */,
+/* 199 */,
+/* 200 */,
+/* 201 */,
+/* 202 */,
+/* 203 */,
+/* 204 */,
+/* 205 */,
+/* 206 */,
+/* 207 */,
+/* 208 */,
+/* 209 */,
+/* 210 */,
+/* 211 */,
+/* 212 */,
+/* 213 */,
+/* 214 */,
+/* 215 */,
+/* 216 */
+/*!****************************************************************************************!*\
+  !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/components/u-search/props.js ***!
+  \****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
   props: {
-    // 输入的值
-    value: {
-      type: [String, Number],
-      default: uni.$u.props.input.value },
-
-    // 输入框类型
-    // number-数字输入键盘，app-vue下可以输入浮点数，app-nvue和小程序平台下只能输入整数
-    // idcard-身份证输入键盘，微信、支付宝、百度、QQ小程序
-    // digit-带小数点的数字键盘，App的nvue页面、微信、支付宝、百度、头条、QQ小程序
-    // text-文本输入键盘
-    type: {
+    // 搜索框形状，round-圆形，square-方形
+    shape: {
       type: String,
-      default: uni.$u.props.input.type },
+      default: uni.$u.props.search.shape },
 
-    // 如果 textarea 是在一个 position:fixed 的区域，需要显示指定属性 fixed 为 true，
-    // 兼容性：微信小程序、百度小程序、字节跳动小程序、QQ小程序
-    fixed: {
-      type: Boolean,
-      default: uni.$u.props.input.fixed },
-
-    // 是否禁用输入框
-    disabled: {
-      type: Boolean,
-      default: uni.$u.props.input.disabled },
-
-    // 禁用状态时的背景色
-    disabledColor: {
+    // 搜索框背景色，默认值#f2f2f2
+    bgColor: {
       type: String,
-      default: uni.$u.props.input.disabledColor },
+      default: uni.$u.props.search.bgColor },
 
-    // 是否显示清除控件
-    clearable: {
-      type: Boolean,
-      default: uni.$u.props.input.clearable },
-
-    // 是否密码类型
-    password: {
-      type: Boolean,
-      default: uni.$u.props.input.password },
-
-    // 最大输入长度，设置为 -1 的时候不限制最大长度
-    maxlength: {
-      type: [String, Number],
-      default: uni.$u.props.input.maxlength },
-
-    // 	输入框为空时的占位符
+    // 占位提示文字
     placeholder: {
       type: String,
-      default: uni.$u.props.input.placeholder },
+      default: uni.$u.props.search.placeholder },
 
-    // 指定placeholder的样式类，注意页面或组件的style中写了scoped时，需要在类名前写/deep/
-    placeholderClass: {
-      type: String,
-      default: uni.$u.props.input.placeholderClass },
-
-    // 指定placeholder的样式
-    placeholderStyle: {
-      type: [String, Object],
-      default: uni.$u.props.input.placeholderStyle },
-
-    // 是否显示输入字数统计，只在 type ="text"或type ="textarea"时有效
-    showWordLimit: {
+    // 是否启用清除控件
+    clearabled: {
       type: Boolean,
-      default: uni.$u.props.input.showWordLimit },
+      default: uni.$u.props.search.clearabled },
 
-    // 设置右下角按钮的文字，有效值：send|search|next|go|done，兼容性详见uni-app文档
-    // https://uniapp.dcloud.io/component/input
-    // https://uniapp.dcloud.io/component/textarea
-    confirmType: {
-      type: String,
-      default: uni.$u.props.input.confirmType },
-
-    // 点击键盘右下角按钮时是否保持键盘不收起，H5无效
-    confirmHold: {
-      type: Boolean,
-      default: uni.$u.props.input.confirmHold },
-
-    // focus时，点击页面的时候不收起键盘，微信小程序有效
-    holdKeyboard: {
-      type: Boolean,
-      default: uni.$u.props.input.holdKeyboard },
-
-    // 自动获取焦点
-    // 在 H5 平台能否聚焦以及软键盘是否跟随弹出，取决于当前浏览器本身的实现。nvue 页面不支持，需使用组件的 focus()、blur() 方法控制焦点
+    // 是否自动聚焦
     focus: {
       type: Boolean,
-      default: uni.$u.props.input.focus },
+      default: uni.$u.props.search.focus },
 
-    // 键盘收起时，是否自动失去焦点，目前仅App3.0.0+有效
-    autoBlur: {
+    // 是否在搜索框右侧显示取消按钮
+    showAction: {
       type: Boolean,
-      default: uni.$u.props.input.autoBlur },
+      default: uni.$u.props.search.showAction },
 
-    // 是否去掉 iOS 下的默认内边距，仅微信小程序，且type=textarea时有效
-    disableDefaultPadding: {
-      type: Boolean,
-      default: uni.$u.props.input.disableDefaultPadding },
+    // 右边控件的样式
+    actionStyle: {
+      type: Object,
+      default: uni.$u.props.search.actionStyle },
 
-    // 指定focus时光标的位置
-    cursor: {
-      type: [String, Number],
-      default: uni.$u.props.input.cursor },
+    // 取消按钮文字
+    actionText: {
+      type: String,
+      default: uni.$u.props.search.actionText },
 
-    // 输入框聚焦时底部与键盘的距离
-    cursorSpacing: {
-      type: [String, Number],
-      default: uni.$u.props.input.cursorSpacing },
-
-    // 光标起始位置，自动聚集时有效，需与selection-end搭配使用
-    selectionStart: {
-      type: [String, Number],
-      default: uni.$u.props.input.selectionStart },
-
-    // 光标结束位置，自动聚集时有效，需与selection-start搭配使用
-    selectionEnd: {
-      type: [String, Number],
-      default: uni.$u.props.input.selectionEnd },
-
-    // 键盘弹起时，是否自动上推页面
-    adjustPosition: {
-      type: Boolean,
-      default: uni.$u.props.input.adjustPosition },
-
-    // 输入框内容对齐方式，可选值为：left|center|right
+    // 输入框内容对齐方式，可选值为 left|center|right
     inputAlign: {
       type: String,
-      default: uni.$u.props.input.inputAlign },
+      default: uni.$u.props.search.inputAlign },
 
-    // 输入框字体的大小
-    fontSize: {
-      type: [String, Number],
-      default: uni.$u.props.input.fontSize },
+    // input输入框的样式，可以定义文字颜色，大小等，对象形式
+    inputStyle: {
+      type: Object,
+      default: uni.$u.props.search.inputStyle },
+
+    // 是否启用输入框
+    disabled: {
+      type: Boolean,
+      default: uni.$u.props.search.disabled },
+
+    // 边框颜色
+    borderColor: {
+      type: String,
+      default: uni.$u.props.search.borderColor },
+
+    // 搜索图标的颜色，默认同输入框字体颜色
+    searchIconColor: {
+      type: String,
+      default: uni.$u.props.search.searchIconColor },
 
     // 输入框字体颜色
     color: {
       type: String,
-      default: uni.$u.props.input.color },
+      default: uni.$u.props.search.color },
 
-    // 输入框前置图标
-    prefixIcon: {
+    // placeholder的颜色
+    placeholderColor: {
       type: String,
-      default: uni.$u.props.input.prefixIcon },
+      default: uni.$u.props.search.placeholderColor },
 
-    // 前置图标样式，对象或字符串
-    prefixIconStyle: {
-      type: [String, Object],
-      default: uni.$u.props.input.prefixIconStyle },
-
-    // 输入框后置图标
-    suffixIcon: {
+    // 左边输入框的图标，可以为uView图标名称或图片路径
+    searchIcon: {
       type: String,
-      default: uni.$u.props.input.suffixIcon },
+      default: uni.$u.props.search.searchIcon },
 
-    // 后置图标样式，对象或字符串
-    suffixIconStyle: {
-      type: [String, Object],
-      default: uni.$u.props.input.suffixIconStyle },
+    searchIconSize: {
+      type: [Number, String],
+      default: uni.$u.props.search.searchIconSize },
 
-    // 边框类型，surround-四周边框，bottom-底部边框，none-无边框
-    border: {
+    // 组件与其他上下左右元素之间的距离，带单位的字符串形式，如"30px"、"30px 20px"等写法
+    margin: {
       type: String,
-      default: uni.$u.props.input.border },
+      default: uni.$u.props.search.margin },
 
-    // 是否只读，与disabled不同之处在于disabled会置灰组件，而readonly则不会
-    readonly: {
+    // 开启showAction时，是否在input获取焦点时才显示
+    animation: {
       type: Boolean,
-      default: uni.$u.props.input.readonly },
+      default: uni.$u.props.search.animation },
 
-    // 输入框形状，circle-圆形，square-方形
-    shape: {
+    // 输入框的初始化内容
+    value: {
       type: String,
-      default: uni.$u.props.input.shape },
+      default: uni.$u.props.search.value },
 
-    // 用于处理或者过滤输入框内容的方法
-    formatter: {
-      type: [Function, null],
-      default: uni.$u.props.input.formatter } } };exports.default = _default;
+    // 输入框最大能输入的长度，-1为不限制长度(来自uniapp文档)
+    maxlength: {
+      type: [String, Number],
+      default: uni.$u.props.search.maxlength },
+
+    // 搜索框高度，单位px
+    height: {
+      type: [String, Number],
+      default: uni.$u.props.search.height },
+
+    // 搜索框左侧文本
+    label: {
+      type: [String, Number, null],
+      default: uni.$u.props.search.label } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 175 */,
-/* 176 */,
-/* 177 */,
-/* 178 */,
-/* 179 */,
-/* 180 */
+/* 217 */,
+/* 218 */,
+/* 219 */,
+/* 220 */,
+/* 221 */,
+/* 222 */,
+/* 223 */,
+/* 224 */
 /*!**************************************************************************************!*\
   !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/components/u-grid/props.js ***!
   \**************************************************************************************/
@@ -19655,14 +19658,14 @@ exports.getswiper = getswiper;var getshop = function getshop(data) {return http.
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 181 */,
-/* 182 */,
-/* 183 */,
-/* 184 */,
-/* 185 */,
-/* 186 */,
-/* 187 */,
-/* 188 */
+/* 225 */,
+/* 226 */,
+/* 227 */,
+/* 228 */,
+/* 229 */,
+/* 230 */,
+/* 231 */,
+/* 232 */
 /*!*******************************************************************************************!*\
   !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/components/u-grid-item/props.js ***!
   \*******************************************************************************************/
@@ -19684,14 +19687,14 @@ exports.getswiper = getswiper;var getshop = function getshop(data) {return http.
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 189 */,
-/* 190 */,
-/* 191 */,
-/* 192 */,
-/* 193 */,
-/* 194 */,
-/* 195 */,
-/* 196 */
+/* 233 */,
+/* 234 */,
+/* 235 */,
+/* 236 */,
+/* 237 */,
+/* 238 */,
+/* 239 */,
+/* 240 */
 /*!***************************************************************************************!*\
   !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/components/u-image/props.js ***!
   \***************************************************************************************/
@@ -19783,19 +19786,19 @@ exports.getswiper = getswiper;var getshop = function getshop(data) {return http.
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 197 */,
-/* 198 */,
-/* 199 */,
-/* 200 */,
-/* 201 */,
-/* 202 */,
-/* 203 */,
-/* 204 */,
-/* 205 */,
-/* 206 */,
-/* 207 */,
-/* 208 */,
-/* 209 */
+/* 241 */,
+/* 242 */,
+/* 243 */,
+/* 244 */,
+/* 245 */,
+/* 246 */,
+/* 247 */,
+/* 248 */,
+/* 249 */,
+/* 250 */,
+/* 251 */,
+/* 252 */,
+/* 253 */
 /*!****************************************************************************************!*\
   !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/components/u-swiper/props.js ***!
   \****************************************************************************************/
@@ -19928,21 +19931,185 @@ exports.getswiper = getswiper;var getshop = function getshop(data) {return http.
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 210 */,
-/* 211 */,
-/* 212 */,
-/* 213 */,
-/* 214 */,
-/* 215 */,
-/* 216 */,
-/* 217 */,
-/* 218 */,
-/* 219 */,
-/* 220 */,
-/* 221 */,
-/* 222 */,
-/* 223 */,
-/* 224 */
+/* 254 */,
+/* 255 */,
+/* 256 */,
+/* 257 */,
+/* 258 */,
+/* 259 */,
+/* 260 */,
+/* 261 */,
+/* 262 */,
+/* 263 */,
+/* 264 */,
+/* 265 */,
+/* 266 */,
+/* 267 */,
+/* 268 */
+/*!******************************************************************************************!*\
+  !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/components/u-loadmore/props.js ***!
+  \******************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
+  props: {
+    // 组件状态，loadmore-加载前的状态，loading-加载中的状态，nomore-没有更多的状态
+    status: {
+      type: String,
+      default: uni.$u.props.loadmore.status },
+
+    // 组件背景色
+    bgColor: {
+      type: String,
+      default: uni.$u.props.loadmore.bgColor },
+
+    // 是否显示加载中的图标
+    icon: {
+      type: Boolean,
+      default: uni.$u.props.loadmore.icon },
+
+    // 字体大小
+    fontSize: {
+      type: [String, Number],
+      default: uni.$u.props.loadmore.fontSize },
+
+    // 字体颜色
+    color: {
+      type: String,
+      default: uni.$u.props.loadmore.color },
+
+
+    // 加载中状态的图标，spinner-花朵状图标，circle-圆圈状，semicircle-半圆
+    loadingIcon: {
+      type: String,
+      default: uni.$u.props.loadmore.loadingIcon },
+
+    // 加载前的提示语
+    loadmoreText: {
+      type: String,
+      default: uni.$u.props.loadmore.loadmoreText },
+
+    // 加载中提示语
+    loadingText: {
+      type: String,
+      default: uni.$u.props.loadmore.loadingText },
+
+    // 没有更多的提示语
+    nomoreText: {
+      type: String,
+      default: uni.$u.props.loadmore.nomoreText },
+
+    // 在“没有更多”状态下，是否显示粗点
+    isDot: {
+      type: Boolean,
+      default: uni.$u.props.loadmore.isDot },
+
+    // 加载中图标的颜色
+    iconColor: {
+      type: String,
+      default: uni.$u.props.loadmore.iconColor },
+
+    // 上边距
+    marginTop: {
+      type: [String, Number],
+      default: uni.$u.props.loadmore.marginTop },
+
+    // 下边距
+    marginBottom: {
+      type: [String, Number],
+      default: uni.$u.props.loadmore.marginBottom },
+
+    // 高度，单位px
+    height: {
+      type: [String, Number],
+      default: uni.$u.props.loadmore.height },
+
+    // 是否显示左边分割线
+    line: {
+      type: Boolean,
+      default: uni.$u.props.loadmore.line } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+/* 269 */,
+/* 270 */,
+/* 271 */,
+/* 272 */,
+/* 273 */,
+/* 274 */,
+/* 275 */,
+/* 276 */
+/*!******************************************************************************************!*\
+  !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/components/u-back-top/props.js ***!
+  \******************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
+  props: {
+    // 返回顶部的形状，circle-圆形，square-方形
+    mode: {
+      type: String,
+      default: uni.$u.props.backtop.mode },
+
+    // 自定义图标
+    icon: {
+      type: String,
+      default: uni.$u.props.backtop.icon },
+
+    // 提示文字
+    text: {
+      type: String,
+      default: uni.$u.props.backtop.text },
+
+    // 返回顶部滚动时间
+    duration: {
+      type: [String, Number],
+      default: uni.$u.props.backtop.duration },
+
+    // 滚动距离
+    scrollTop: {
+      type: [String, Number],
+      default: uni.$u.props.backtop.scrollTop },
+
+    // 距离顶部多少距离显示，单位px
+    top: {
+      type: [String, Number],
+      default: uni.$u.props.backtop.top },
+
+    // 返回顶部按钮到底部的距离，单位px
+    bottom: {
+      type: [String, Number],
+      default: uni.$u.props.backtop.bottom },
+
+    // 返回顶部按钮到右边的距离，单位px
+    right: {
+      type: [String, Number],
+      default: uni.$u.props.backtop.right },
+
+    // 层级
+    zIndex: {
+      type: [String, Number],
+      default: uni.$u.props.backtop.zIndex },
+
+    // 图标的样式，对象形式
+    iconStyle: {
+      type: Object,
+      default: uni.$u.props.backtop.iconStyle } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+/* 277 */,
+/* 278 */,
+/* 279 */,
+/* 280 */,
+/* 281 */,
+/* 282 */,
+/* 283 */,
+/* 284 */
 /*!*************************************************************************************!*\
   !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/components/u-row/props.js ***!
   \*************************************************************************************/
@@ -19969,14 +20136,14 @@ exports.getswiper = getswiper;var getshop = function getshop(data) {return http.
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 225 */,
-/* 226 */,
-/* 227 */,
-/* 228 */,
-/* 229 */,
-/* 230 */,
-/* 231 */,
-/* 232 */
+/* 285 */,
+/* 286 */,
+/* 287 */,
+/* 288 */,
+/* 289 */,
+/* 290 */,
+/* 291 */,
+/* 292 */
 /*!*************************************************************************************!*\
   !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/components/u-col/props.js ***!
   \*************************************************************************************/
@@ -20013,14 +20180,14 @@ exports.getswiper = getswiper;var getshop = function getshop(data) {return http.
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 233 */,
-/* 234 */,
-/* 235 */,
-/* 236 */,
-/* 237 */,
-/* 238 */,
-/* 239 */,
-/* 240 */
+/* 293 */,
+/* 294 */,
+/* 295 */,
+/* 296 */,
+/* 297 */,
+/* 298 */,
+/* 299 */,
+/* 300 */
 /*!****************************************************************************************!*\
   !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/components/u-avatar/props.js ***!
   \****************************************************************************************/
@@ -20106,14 +20273,14 @@ exports.getswiper = getswiper;var getshop = function getshop(data) {return http.
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 241 */,
-/* 242 */,
-/* 243 */,
-/* 244 */,
-/* 245 */,
-/* 246 */,
-/* 247 */,
-/* 248 */
+/* 301 */,
+/* 302 */,
+/* 303 */,
+/* 304 */,
+/* 305 */,
+/* 306 */,
+/* 307 */,
+/* 308 */
 /*!********************************************************************************************!*\
   !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/components/u-cell-group/props.js ***!
   \********************************************************************************************/
@@ -20135,14 +20302,14 @@ exports.getswiper = getswiper;var getshop = function getshop(data) {return http.
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 249 */,
-/* 250 */,
-/* 251 */,
-/* 252 */,
-/* 253 */,
-/* 254 */,
-/* 255 */,
-/* 256 */
+/* 309 */,
+/* 310 */,
+/* 311 */,
+/* 312 */,
+/* 313 */,
+/* 314 */,
+/* 315 */,
+/* 316 */
 /*!**************************************************************************************!*\
   !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/components/u-cell/props.js ***!
   \**************************************************************************************/
@@ -20260,141 +20427,292 @@ exports.getswiper = getswiper;var getshop = function getshop(data) {return http.
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 257 */,
-/* 258 */,
-/* 259 */,
-/* 260 */,
-/* 261 */,
-/* 262 */,
-/* 263 */,
-/* 264 */,
-/* 265 */,
-/* 266 */,
-/* 267 */,
-/* 268 */,
-/* 269 */,
-/* 270 */,
-/* 271 */,
-/* 272 */,
-/* 273 */,
-/* 274 */,
-/* 275 */,
-/* 276 */,
-/* 277 */,
-/* 278 */
-/*!*****************************************************************************************!*\
-  !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/components/u-overlay/props.js ***!
-  \*****************************************************************************************/
+/* 317 */,
+/* 318 */,
+/* 319 */,
+/* 320 */,
+/* 321 */,
+/* 322 */,
+/* 323 */,
+/* 324 */
+/*!*********************************************************************************************!*\
+  !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/components/u-radio-group/props.js ***!
+  \*********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
   props: {
-    // 是否显示遮罩
-    show: {
+    // 绑定的值
+    value: {
+      type: [String, Number, Boolean],
+      default: uni.$u.props.radioGroup.value },
+
+
+    // 是否禁用全部radio
+    disabled: {
       type: Boolean,
-      default: uni.$u.props.overlay.show },
+      default: uni.$u.props.radioGroup.disabled },
 
-    // 层级z-index
-    zIndex: {
-      type: [String, Number],
-      default: uni.$u.props.overlay.zIndex },
-
-    // 遮罩的过渡时间，单位为ms
-    duration: {
-      type: [String, Number],
-      default: uni.$u.props.overlay.duration },
-
-    // 不透明度值，当做rgba的第四个参数
-    opacity: {
-      type: [String, Number],
-      default: uni.$u.props.overlay.opacity } } };exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
-
-/***/ }),
-/* 279 */,
-/* 280 */,
-/* 281 */,
-/* 282 */,
-/* 283 */,
-/* 284 */,
-/* 285 */,
-/* 286 */
-/*!**********************************************************************************************!*\
-  !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/components/u-loading-icon/props.js ***!
-  \**********************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
-  props: {
-    // 是否显示组件
-    show: {
-      type: Boolean,
-      default: uni.$u.props.loadingIcon.show },
-
-    // 颜色
-    color: {
+    // 形状，circle-圆形，square-方形
+    shape: {
       type: String,
-      default: uni.$u.props.loadingIcon.color },
+      default: uni.$u.props.radioGroup.shape },
 
-    // 提示文字颜色
-    textColor: {
+    // 选中状态下的颜色，如设置此值，将会覆盖parent的activeColor值
+    activeColor: {
       type: String,
-      default: uni.$u.props.loadingIcon.textColor },
+      default: uni.$u.props.radioGroup.activeColor },
 
-    // 文字和图标是否垂直排列
-    vertical: {
-      type: Boolean,
-      default: uni.$u.props.loadingIcon.vertical },
-
-    // 模式选择，circle-圆形，spinner-花朵形，semicircle-半圆形
-    mode: {
-      type: String,
-      default: uni.$u.props.loadingIcon.mode },
-
-    // 图标大小，单位默认px
-    size: {
-      type: [String, Number],
-      default: uni.$u.props.loadingIcon.size },
-
-    // 文字大小
-    textSize: {
-      type: [String, Number],
-      default: uni.$u.props.loadingIcon.textSize },
-
-    // 文字内容
-    text: {
-      type: [String, Number],
-      default: uni.$u.props.loadingIcon.text },
-
-    // 动画模式
-    timingFunction: {
-      type: String,
-      default: uni.$u.props.loadingIcon.timingFunction },
-
-    // 动画执行周期时间
-    duration: {
-      type: [String, Number],
-      default: uni.$u.props.loadingIcon.duration },
-
-    // mode=circle时的暗边颜色
+    // 未选中的颜色
     inactiveColor: {
       type: String,
-      default: uni.$u.props.loadingIcon.inactiveColor } } };exports.default = _default;
+      default: uni.$u.props.radioGroup.inactiveColor },
+
+    // 标识符
+    name: {
+      type: String,
+      default: uni.$u.props.radioGroup.name },
+
+    // 整个组件的尺寸，默认px
+    size: {
+      type: [String, Number],
+      default: uni.$u.props.radioGroup.size },
+
+    // 布局方式，row-横向，column-纵向
+    placement: {
+      type: String,
+      default: uni.$u.props.radioGroup.placement },
+
+    // label的文本
+    label: {
+      type: [String],
+      default: uni.$u.props.radioGroup.label },
+
+    // label的颜色 （默认 '#303133' ）
+    labelColor: {
+      type: [String],
+      default: uni.$u.props.radioGroup.labelColor },
+
+    // label的字体大小，px单位
+    labelSize: {
+      type: [String, Number],
+      default: uni.$u.props.radioGroup.labelSize },
+
+    // 是否禁止点击文本操作checkbox(默认 false )
+    labelDisabled: {
+      type: Boolean,
+      default: uni.$u.props.radioGroup.labelDisabled },
+
+    // 图标颜色
+    iconColor: {
+      type: String,
+      default: uni.$u.props.radioGroup.iconColor },
+
+    // 图标的大小，单位px
+    iconSize: {
+      type: [String, Number],
+      default: uni.$u.props.radioGroup.iconSize },
+
+    // 竖向配列时，是否显示下划线
+    borderBottom: {
+      type: Boolean,
+      default: uni.$u.props.radioGroup.borderBottom },
+
+    // 图标与文字的对齐方式
+    iconPlacement: {
+      type: String,
+      default: uni.$u.props.radio.iconPlacement } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 287 */,
-/* 288 */,
-/* 289 */,
-/* 290 */,
-/* 291 */,
-/* 292 */,
-/* 293 */,
-/* 294 */
+/* 325 */,
+/* 326 */,
+/* 327 */,
+/* 328 */,
+/* 329 */,
+/* 330 */,
+/* 331 */,
+/* 332 */
+/*!***************************************************************************************!*\
+  !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/components/u-radio/props.js ***!
+  \***************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
+  props: {
+    // radio的名称
+    name: {
+      type: [String, Number, Boolean],
+      default: uni.$u.props.radio.name },
+
+    // 形状，square为方形，circle为圆型
+    shape: {
+      type: String,
+      default: uni.$u.props.radio.shape },
+
+    // 是否禁用
+    disabled: {
+      type: [String, Boolean],
+      default: uni.$u.props.radio.disabled },
+
+    // 是否禁止点击提示语选中单选框
+    labelDisabled: {
+      type: [String, Boolean],
+      default: uni.$u.props.radio.labelDisabled },
+
+    // 选中状态下的颜色，如设置此值，将会覆盖parent的activeColor值
+    activeColor: {
+      type: String,
+      default: uni.$u.props.radio.activeColor },
+
+    // 未选中的颜色
+    inactiveColor: {
+      type: String,
+      default: uni.$u.props.radio.inactiveColor },
+
+    // 图标的大小，单位px
+    iconSize: {
+      type: [String, Number],
+      default: uni.$u.props.radio.iconSize },
+
+    // label的字体大小，px单位
+    labelSize: {
+      type: [String, Number],
+      default: uni.$u.props.radio.labelSize },
+
+    // label提示文字，因为nvue下，直接slot进来的文字，由于特殊的结构，无法修改样式
+    label: {
+      type: [String, Number],
+      default: uni.$u.props.radio.label },
+
+    // 整体的大小
+    size: {
+      type: [String, Number],
+      default: uni.$u.props.radio.size },
+
+    // 图标颜色
+    color: {
+      type: String,
+      default: uni.$u.props.radio.color },
+
+    // label的颜色
+    labelColor: {
+      type: String,
+      default: uni.$u.props.radio.labelColor } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+/* 333 */,
+/* 334 */,
+/* 335 */,
+/* 336 */,
+/* 337 */,
+/* 338 */,
+/* 339 */,
+/* 340 */
+/*!*************************************************************************************!*\
+  !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/components/u-tag/props.js ***!
+  \*************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
+  props: {
+    // 标签类型info、primary、success、warning、error
+    type: {
+      type: String,
+      default: uni.$u.props.tag.type },
+
+    // 不可用
+    disabled: {
+      type: [Boolean, String],
+      default: uni.$u.props.tag.disabled },
+
+    // 标签的大小，large，medium，mini
+    size: {
+      type: String,
+      default: uni.$u.props.tag.size },
+
+    // tag的形状，circle（两边半圆形）, square（方形，带圆角）
+    shape: {
+      type: String,
+      default: uni.$u.props.tag.shape },
+
+    // 标签文字
+    text: {
+      type: [String, Number],
+      default: uni.$u.props.tag.text },
+
+    // 背景颜色，默认为空字符串，即不处理
+    bgColor: {
+      type: String,
+      default: uni.$u.props.tag.bgColor },
+
+    // 标签字体颜色，默认为空字符串，即不处理
+    color: {
+      type: String,
+      default: uni.$u.props.tag.color },
+
+    // 标签的边框颜色
+    borderColor: {
+      type: String,
+      default: uni.$u.props.tag.borderColor },
+
+    // 关闭按钮图标的颜色
+    closeColor: {
+      type: String,
+      default: uni.$u.props.tag.closeColor },
+
+    // 点击时返回的索引值，用于区分例遍的数组哪个元素被点击了
+    name: {
+      type: [String, Number],
+      default: uni.$u.props.tag.name },
+
+    // // 模式选择，dark|light|plain
+    // mode: {
+    // 	type: String,
+    // 	default: 'light'
+    // },
+    // 镂空时是否填充背景色
+    plainFill: {
+      type: Boolean,
+      default: uni.$u.props.tag.plainFill },
+
+    // 是否镂空
+    plain: {
+      type: Boolean,
+      default: uni.$u.props.tag.plain },
+
+    // 是否可关闭
+    closable: {
+      type: Boolean,
+      default: uni.$u.props.tag.closable },
+
+    // 是否显示
+    show: {
+      type: Boolean,
+      default: uni.$u.props.tag.show },
+
+    // 内置图标，或绝对路径的图片
+    icon: {
+      type: String,
+      default: uni.$u.props.tag.icon } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+/* 341 */,
+/* 342 */,
+/* 343 */,
+/* 344 */,
+/* 345 */,
+/* 346 */,
+/* 347 */,
+/* 348 */
 /*!**************************************************************************************!*\
   !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/components/u-icon/icons.js ***!
   \**************************************************************************************/
@@ -20617,7 +20935,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   'uicon-en': "\uE692" };exports.default = _default;
 
 /***/ }),
-/* 295 */
+/* 349 */
 /*!**************************************************************************************!*\
   !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/components/u-icon/props.js ***!
   \**************************************************************************************/
@@ -20714,97 +21032,1466 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 296 */,
-/* 297 */,
-/* 298 */,
-/* 299 */,
-/* 300 */,
-/* 301 */,
-/* 302 */,
-/* 303 */
-/*!*************************************************************************************!*\
-  !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/components/u-gap/props.js ***!
-  \*************************************************************************************/
+/* 350 */,
+/* 351 */,
+/* 352 */,
+/* 353 */,
+/* 354 */,
+/* 355 */,
+/* 356 */,
+/* 357 */
+/*!***************************************************************************************!*\
+  !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/components/u-parse/props.js ***!
+  \***************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
   props: {
-    // 背景颜色（默认transparent）
-    bgColor: {
+
+
+
+    content: String,
+    copyLink: {
+      type: Boolean,
+      default: uni.$u.props.parse.copyLink },
+
+    domain: String,
+    errorImg: {
       type: String,
-      default: uni.$u.props.gap.bgColor },
+      default: uni.$u.props.parse.errorImg },
 
-    // 分割槽高度，单位px（默认30）
-    height: {
-      type: [String, Number],
-      default: uni.$u.props.gap.height },
+    lazyLoad: {
+      type: Boolean,
+      default: uni.$u.props.parse.lazyLoad },
 
-    // 与上一个组件的距离
-    marginTop: {
-      type: [String, Number],
-      default: uni.$u.props.gap.marginTop },
+    loadingImg: {
+      type: String,
+      default: uni.$u.props.parse.loadingImg },
 
-    // 与下一个组件的距离
-    marginBottom: {
-      type: [String, Number],
-      default: uni.$u.props.gap.marginBottom } } };exports.default = _default;
+    pauseVideo: {
+      type: Boolean,
+      default: uni.$u.props.parse.pauseVideo },
+
+    previewImg: {
+      type: Boolean,
+      default: uni.$u.props.parse.previewImg },
+
+    scrollTable: Boolean,
+    selectable: Boolean,
+    setTitle: {
+      type: Boolean,
+      default: uni.$u.props.parse.setTitle },
+
+    showImgMenu: {
+      type: Boolean,
+      default: uni.$u.props.parse.showImgMenu },
+
+    tagStyle: Object,
+    useAnchor: null } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 304 */,
-/* 305 */,
-/* 306 */,
-/* 307 */,
-/* 308 */,
-/* 309 */,
-/* 310 */,
-/* 311 */
-/*!**************************************************************************************************!*\
-  !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/components/u-swiper-indicator/props.js ***!
-  \**************************************************************************************************/
+/* 358 */
+/*!****************************************************************************************!*\
+  !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/components/u-parse/parser.js ***!
+  \****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {
+
+/**
+               * @fileoverview html 解析器
+               */
+// 配置
+function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var config = {
+  // 信任的标签（保持标签名不变）
+  trustTags: makeMap('a,abbr,ad,audio,b,blockquote,br,code,col,colgroup,dd,del,dl,dt,div,em,fieldset,h1,h2,h3,h4,h5,h6,hr,i,img,ins,label,legend,li,ol,p,q,ruby,rt,source,span,strong,sub,sup,table,tbody,td,tfoot,th,thead,tr,title,ul,video'),
+  // 块级标签（转为 div，其他的非信任标签转为 span）
+  blockTags: makeMap('address,article,aside,body,caption,center,cite,footer,header,html,nav,pre,section'),
+  // 要移除的标签
+  ignoreTags: makeMap('area,base,canvas,embed,frame,head,iframe,input,link,map,meta,param,rp,script,source,style,textarea,title,track,wbr'),
+  // 自闭合的标签
+  voidTags: makeMap('area,base,br,col,circle,ellipse,embed,frame,hr,img,input,line,link,meta,param,path,polygon,rect,source,track,use,wbr'),
+  // html 实体
+  entities: {
+    lt: '<',
+    gt: '>',
+    quot: '"',
+    apos: "'",
+    ensp: "\u2002",
+    emsp: "\u2003",
+    nbsp: '\xA0',
+    semi: ';',
+    ndash: '–',
+    mdash: '—',
+    middot: '·',
+    lsquo: '‘',
+    rsquo: '’',
+    ldquo: '“',
+    rdquo: '”',
+    bull: '•',
+    hellip: '…' },
+
+  // 默认的标签样式
+  tagStyle: {
+
+    address: 'font-style:italic',
+    big: 'display:inline;font-size:1.2em',
+    caption: 'display:table-caption;text-align:center',
+    center: 'text-align:center',
+    cite: 'font-style:italic',
+    dd: 'margin-left:40px',
+    mark: 'background-color:yellow',
+    pre: 'font-family:monospace;white-space:pre',
+    s: 'text-decoration:line-through',
+    small: 'display:inline;font-size:0.8em',
+    u: 'text-decoration:underline' } };var _uni$getSystemInfoSyn =
+
+
+
+uni.getSystemInfoSync(),windowWidth = _uni$getSystemInfoSyn.windowWidth;
+var blankChar = makeMap(' ,\r,\n,\t,\f');
+var idIndex = 0;
+
+
+
+
+
+
+
+
+
+
+/**
+                  * @description 创建 map
+                  * @param {String} str 逗号分隔
+                  */
+
+function makeMap(str) {
+  var map = Object.create(null);
+  var list = str.split(',');
+
+  for (var i = list.length; i--;) {
+    map[list[i]] = true;
+  }
+
+  return map;
+}
+/**
+   * @description 解码 html 实体
+   * @param {String} str 要解码的字符串
+   * @param {Boolean} amp 要不要解码 &amp;
+   * @returns {String} 解码后的字符串
+   */
+
+function decodeEntity(str, amp) {
+  var i = str.indexOf('&');
+
+  while (i != -1) {
+    var j = str.indexOf(';', i + 3);
+    var code = void 0;
+    if (j == -1) break;
+
+    if (str[i + 1] == '#') {
+      // &#123; 形式的实体
+      code = parseInt((str[i + 2] == 'x' ? '0' : '') + str.substring(i + 2, j));
+      if (!isNaN(code)) str = str.substr(0, i) + String.fromCharCode(code) + str.substr(j + 1);
+    } else {
+      // &nbsp; 形式的实体
+      code = str.substring(i + 1, j);
+      if (config.entities[code] || code == 'amp' && amp) str = str.substr(0, i) + (config.entities[code] || '&') + str.substr(j + 1);
+    }
+
+    i = str.indexOf('&', i + 1);
+  }
+
+  return str;
+}
+/**
+   * @description html 解析器
+   * @param {Object} vm 组件实例
+   */
+
+function parser(vm) {
+  this.options = vm || {};
+  this.tagStyle = Object.assign(config.tagStyle, this.options.tagStyle);
+  this.imgList = vm.imgList || [];
+  this.plugins = vm.plugins || [];
+  this.attrs = Object.create(null);
+  this.stack = [];
+  this.nodes = [];
+}
+/**
+   * @description 执行解析
+   * @param {String} content 要解析的文本
+   */
+
+parser.prototype.parse = function (content) {
+  // 插件处理
+  for (var i = this.plugins.length; i--;) {
+    if (this.plugins[i].onUpdate) content = this.plugins[i].onUpdate(content, config) || content;
+  }
+
+  new lexer(this).parse(content); // 出栈未闭合的标签
+
+  while (this.stack.length) {
+    this.popNode();
+  }
+
+  return this.nodes;
+};
+/**
+    * @description 将标签暴露出来（不被 rich-text 包含）
+    */
+
+parser.prototype.expose = function () {
+
+  for (var i = this.stack.length; i--;) {
+    var item = this.stack[i];
+    if (item.name == 'a' || item.c) return;
+    item.c = 1;
+  }
+};
+/**
+    * @description 处理插件
+    * @param {Object} node 要处理的标签
+    * @returns {Boolean} 是否要移除此标签
+    */
+
+parser.prototype.hook = function (node) {
+  for (var i = this.plugins.length; i--;) {
+    if (this.plugins[i].onParse && this.plugins[i].onParse(node, this) == false) return false;
+  }
+
+  return true;
+};
+/**
+    * @description 将链接拼接上主域名
+    * @param {String} url 需要拼接的链接
+    * @returns {String} 拼接后的链接
+    */
+
+parser.prototype.getUrl = function (url) {var
+  domain = this.options.domain;
+
+  if (url[0] == '/') {
+    // // 开头的补充协议名
+    if (url[1] == '/') url = "".concat(domain ? domain.split('://')[0] : 'http', ":").concat(url); // 否则补充整个域名
+    else if (domain) url = domain + url;
+  } else if (domain && !url.includes('data:') && !url.includes('://')) url = "".concat(domain, "/").concat(url);
+
+  return url;
+};
+/**
+    * @description 解析样式表
+    * @param {Object} node 标签
+    * @returns {Object}
+    */
+
+parser.prototype.parseStyle = function (node) {var
+  attrs = node.attrs;
+  var list = (this.tagStyle[node.name] || '').split(';').concat((attrs.style || '').split(';'));
+  var styleObj = {};
+  var tmp = '';
+
+  if (attrs.id) {
+    // 暴露锚点
+    if (this.options.useAnchor) this.expose();else if (node.name != 'img' && node.name != 'a' && node.name != 'video' && node.name != 'audio') attrs.id = void 0;
+  } // 转换 width 和 height 属性
+
+  if (attrs.width) {
+    styleObj.width = parseFloat(attrs.width) + (attrs.width.includes('%') ? '%' : 'px');
+    attrs.width = void 0;
+  }
+
+  if (attrs.height) {
+    styleObj.height = parseFloat(attrs.height) + (attrs.height.includes('%') ? '%' : 'px');
+    attrs.height = void 0;
+  }
+
+  for (var i = 0, len = list.length; i < len; i++) {
+    var info = list[i].split(':');
+    if (info.length < 2) continue;
+    var key = info.shift().trim().toLowerCase();
+    var value = info.join(':').trim(); // 兼容性的 css 不压缩
+
+    if (value[0] == '-' && value.lastIndexOf('-') > 0 || value.includes('safe')) tmp += ';'.concat(key, ':').concat(value); // 重复的样式进行覆盖
+    else if (!styleObj[key] || value.includes('import') || !styleObj[key].includes('import')) {
+        // 填充链接
+        if (value.includes('url')) {
+          var j = value.indexOf('(') + 1;
+
+          if (j) {
+            while (value[j] == '"' || value[j] == "'" || blankChar[value[j]]) {
+              j++;
+            }
+
+            value = value.substr(0, j) + this.getUrl(value.substr(j));
+          }
+        } // 转换 rpx（rich-text 内部不支持 rpx）
+        else if (value.includes('rpx')) {
+            value = value.replace(/[0-9.]+\s*rpx/g, function ($) {return "".concat(parseFloat($) * windowWidth / 750, "px");});
+          }
+
+        styleObj[key] = value;
+      }
+  }
+
+  node.attrs.style = tmp;
+  return styleObj;
+};
+/**
+    * @description 解析到标签名
+    * @param {String} name 标签名
+    * @private
+    */
+
+parser.prototype.onTagName = function (name) {
+  this.tagName = this.xml ? name : name.toLowerCase();
+  if (this.tagName == 'svg') this.xml = true; // svg 标签内大小写敏感
+};
+/**
+    * @description 解析到属性名
+    * @param {String} name 属性名
+    * @private
+    */
+
+parser.prototype.onAttrName = function (name) {
+  name = this.xml ? name : name.toLowerCase();
+
+  if (name.substr(0, 5) == 'data-') {
+    // data-src 自动转为 src
+    if (name == 'data-src' && !this.attrs.src) this.attrName = 'src'; // a 和 img 标签保留 data- 的属性，可以在 imgtap 和 linktap 事件中使用
+    else if (this.tagName == 'img' || this.tagName == 'a') this.attrName = name; // 剩余的移除以减小大小
+      else this.attrName = void 0;
+  } else {
+    this.attrName = name;
+    this.attrs[name] = 'T'; // boolean 型属性缺省设置
+  }
+};
+/**
+    * @description 解析到属性值
+    * @param {String} val 属性值
+    * @private
+    */
+
+parser.prototype.onAttrVal = function (val) {
+  var name = this.attrName || ''; // 部分属性进行实体解码
+
+  if (name == 'style' || name == 'href') this.attrs[name] = decodeEntity(val, true); // 拼接主域名
+  else if (name.includes('src')) this.attrs[name] = this.getUrl(decodeEntity(val, true));else if (name) this.attrs[name] = val;
+};
+/**
+    * @description 解析到标签开始
+    * @param {Boolean} selfClose 是否有自闭合标识 />
+    * @private
+    */
+
+parser.prototype.onOpenTag = function (selfClose) {
+  // 拼装 node
+  var node = Object.create(null);
+  node.name = this.tagName;
+  node.attrs = this.attrs;
+  this.attrs = Object.create(null);var
+  attrs = node.attrs;
+  var parent = this.stack[this.stack.length - 1];
+  var siblings = parent ? parent.children : this.nodes;
+  var close = this.xml ? selfClose : config.voidTags[node.name]; // 转换 embed 标签
+
+  if (node.name == 'embed') {
+
+    var src = attrs.src || ''; // 按照后缀名和 type 将 embed 转为 video 或 audio
+
+    if (src.includes('.mp4') || src.includes('.3gp') || src.includes('.m3u8') || (attrs.type || '').includes('video')) node.name = 'video';else if (src.includes('.mp3') || src.includes('.wav') || src.includes('.aac') || src.includes('.m4a') || (attrs.type || '').includes('audio')) node.name = 'audio';
+    if (attrs.autostart) attrs.autoplay = 'T';
+    attrs.controls = 'T';
+
+
+
+  }
+  // 处理音视频
+
+  if (node.name == 'video' || node.name == 'audio') {
+    // 设置 id 以便获取 context
+    if (node.name == 'video' && !attrs.id) attrs.id = "v".concat(idIndex++); // 没有设置 controls 也没有设置 autoplay 的自动设置 controls
+
+    if (!attrs.controls && !attrs.autoplay) attrs.controls = 'T'; // 用数组存储所有可用的 source
+
+    node.src = [];
+
+    if (attrs.src) {
+      node.src.push(attrs.src);
+      attrs.src = void 0;
+    }
+
+    this.expose();
+  }
+  // 处理自闭合标签
+
+  if (close) {
+    if (!this.hook(node) || config.ignoreTags[node.name]) {
+      // 通过 base 标签设置主域名
+      if (node.name == 'base' && !this.options.domain) this.options.domain = attrs.href;
+      // 设置 source 标签（仅父节点为 video 或 audio 时有效）
+      else if (node.name == 'source' && parent && (parent.name == 'video' || parent.name == 'audio') && attrs.src) parent.src.push(attrs.src);
+
+      return;
+    } // 解析 style
+
+    var styleObj = this.parseStyle(node); // 处理图片
+
+    if (node.name == 'img') {
+      if (attrs.src) {
+        // 标记 webp
+        if (attrs.src.includes('webp')) node.webp = 'T'; // data url 图片如果没有设置 original-src 默认为不可预览的小图片
+
+        if (attrs.src.includes('data:') && !attrs['original-src']) attrs.ignore = 'T';
+
+        if (!attrs.ignore || node.webp || attrs.src.includes('cloud://')) {
+          for (var i = this.stack.length; i--;) {
+            var item = this.stack[i];
+
+            if (item.name == 'a') {
+              node.a = item.attrs;
+              break;
+            }
+
+            var style = item.attrs.style || '';
+
+            if (style.includes('flex:') && !style.includes('flex:0') && !style.includes('flex: 0') && (!styleObj.width || !styleObj.width.includes('%'))) {
+              styleObj.width = '100% !important';
+              styleObj.height = '';
+
+              for (var j = i + 1; j < this.stack.length; j++) {
+                this.stack[j].attrs.style = (this.stack[j].attrs.style || '').replace('inline-', '');
+              }
+            } else if (style.includes('flex') && styleObj.width == '100%') {
+              for (var _j = i + 1; _j < this.stack.length; _j++) {
+                var _style = this.stack[_j].attrs.style || '';
+
+                if (!_style.includes(';width') && !_style.includes(' width') && _style.indexOf('width') != 0) {
+                  styleObj.width = '';
+                  break;
+                }
+              }
+            } else if (style.includes('inline-block')) {
+              if (styleObj.width && styleObj.width[styleObj.width.length - 1] == '%') {
+                item.attrs.style += ";max-width:".concat(styleObj.width);
+                styleObj.width = '';
+              } else item.attrs.style += ';max-width:100%';
+            }
+
+            item.c = 1;
+          }
+
+          attrs.i = this.imgList.length.toString();
+
+          var _src = attrs['original-src'] || attrs.src;
+
+          if (this.imgList.includes(_src)) {
+            // 如果有重复的链接则对域名进行随机大小写变换避免预览时错位
+            var _i = _src.indexOf('://');
+
+            if (_i != -1) {
+              _i += 3;
+
+              var newSrc = _src.substr(0, _i);
+
+              for (; _i < _src.length; _i++) {
+                if (_src[_i] == '/') break;
+                newSrc += Math.random() > 0.5 ? _src[_i].toUpperCase() : _src[_i];
+              }
+
+              newSrc += _src.substr(_i);
+              _src = newSrc;
+            }
+          }
+
+          this.imgList.push(_src);
+
+
+
+
+
+        }
+      }
+
+      if (styleObj.display == 'inline') styleObj.display = '';
+
+      if (attrs.ignore) {
+        styleObj['max-width'] = styleObj['max-width'] || '100%';
+        attrs.style += ';-webkit-touch-callout:none';
+      }
+      // 设置的宽度超出屏幕，为避免变形，高度转为自动
+
+      if (parseInt(styleObj.width) > windowWidth) styleObj.height = void 0; // 记录是否设置了宽高
+
+      if (styleObj.width) {
+        if (styleObj.width.includes('auto')) styleObj.width = '';else {
+          node.w = 'T';
+          if (styleObj.height && !styleObj.height.includes('auto')) node.h = 'T';
+        }
+      }
+    } else if (node.name == 'svg') {
+      siblings.push(node);
+      this.stack.push(node);
+      this.popNode();
+      return;
+    }
+
+    for (var key in styleObj) {
+      if (styleObj[key]) attrs.style += ';'.concat(key, ':').concat(styleObj[key].replace(' !important', ''));
+    }
+
+    attrs.style = attrs.style.substr(1) || void 0;
+  } else {
+    if (node.name == 'pre' || (attrs.style || '').includes('white-space') && attrs.style.includes('pre')) this.pre = node.pre = true;
+    node.children = [];
+    this.stack.push(node);
+  } // 加入节点树
+
+  siblings.push(node);
+};
+/**
+    * @description 解析到标签结束
+    * @param {String} name 标签名
+    * @private
+    */
+
+parser.prototype.onCloseTag = function (name) {
+  // 依次出栈到匹配为止
+  name = this.xml ? name : name.toLowerCase();
+  var i;
+
+  for (i = this.stack.length; i--;) {
+    if (this.stack[i].name == name) break;
+  }
+
+  if (i != -1) {
+    while (this.stack.length > i) {
+      this.popNode();
+    }
+  } else if (name == 'p' || name == 'br') {
+    var siblings = this.stack.length ? this.stack[this.stack.length - 1].children : this.nodes;
+    siblings.push({
+      name: name,
+      attrs: {} });
+
+  }
+};
+/**
+    * @description 处理标签出栈
+    * @private
+    */
+
+parser.prototype.popNode = function () {
+  var node = this.stack.pop();var
+  attrs = node.attrs;var
+  children = node.children;
+  var parent = this.stack[this.stack.length - 1];
+  var siblings = parent ? parent.children : this.nodes;
+
+  if (!this.hook(node) || config.ignoreTags[node.name]) {
+    // 获取标题
+    if (node.name == 'title' && children.length && children[0].type == 'text' && this.options.setTitle) {
+      uni.setNavigationBarTitle({
+        title: children[0].text });
+
+    }
+    siblings.pop();
+    return;
+  }
+
+  if (node.pre) {
+    // 是否合并空白符标识
+    node.pre = this.pre = void 0;
+
+    for (var i = this.stack.length; i--;) {
+      if (this.stack[i].pre) this.pre = true;
+    }
+  }
+
+  var styleObj = {}; // 转换 svg
+
+  if (node.name == 'svg') {
+
+    var src = '';var _attrs =
+    attrs,style = _attrs.style;
+    attrs.style = '';
+    attrs.xmlns = 'http://www.w3.org/2000/svg';
+
+    (function traversal(node) {
+      src += "<".concat(node.name);
+
+      for (var item in node.attrs) {
+        var val = node.attrs[item];
+
+        if (val) {
+          if (item == 'viewbox') item = 'viewBox';
+          src += ' '.concat(item, '="').concat(val, '"');
+        }
+      }
+
+      if (!node.children) src += '/>';else {
+        src += '>';
+
+        for (var _i2 = 0; _i2 < node.children.length; _i2++) {
+          traversal(node.children[_i2]);
+        }
+
+        src += "</".concat(node.name, ">");
+      }
+    })(node);
+
+    node.name = 'img';
+    node.attrs = {
+      src: "data:image/svg+xml;utf8,".concat(src.replace(/#/g, '%23')),
+      style: style,
+      ignore: 'T' };
+
+    node.children = void 0;
+
+    this.xml = false;
+    return;
+  }
+  // 转换 align 属性
+
+  if (attrs.align) {
+    if (node.name == 'table') {
+      if (attrs.align == 'center') styleObj['margin-inline-start'] = styleObj['margin-inline-end'] = 'auto';else styleObj.float = attrs.align;
+    } else styleObj['text-align'] = attrs.align;
+
+    attrs.align = void 0;
+  } // 转换 font 标签的属性
+
+  if (node.name == 'font') {
+    if (attrs.color) {
+      styleObj.color = attrs.color;
+      attrs.color = void 0;
+    }
+
+    if (attrs.face) {
+      styleObj['font-family'] = attrs.face;
+      attrs.face = void 0;
+    }
+
+    if (attrs.size) {
+      var size = parseInt(attrs.size);
+
+      if (!isNaN(size)) {
+        if (size < 1) size = 1;else if (size > 7) size = 7;
+        styleObj['font-size'] = ['xx-small', 'x-small', 'small', 'medium', 'large', 'x-large', 'xx-large'][size - 1];
+      }
+
+      attrs.size = void 0;
+    }
+  }
+  // 一些编辑器的自带 class
+
+  if ((attrs.class || '').includes('align-center')) styleObj['text-align'] = 'center';
+  Object.assign(styleObj, this.parseStyle(node));
+
+  if (parseInt(styleObj.width) > windowWidth) {
+    styleObj['max-width'] = '100%';
+    styleObj['box-sizing'] = 'border-box';
+  }
+
+  if (config.blockTags[node.name]) node.name = 'div'; // 未知标签转为 span，避免无法显示
+  else if (!config.trustTags[node.name] && !this.xml) node.name = 'span';
+  if (node.name == 'a' || node.name == 'ad')
+
+  this.expose();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // 列表处理
+  else if ((node.name == 'ul' || node.name == 'ol') && node.c) {
+      var types = {
+        a: 'lower-alpha',
+        A: 'upper-alpha',
+        i: 'lower-roman',
+        I: 'upper-roman' };
+
+
+      if (types[attrs.type]) {
+        attrs.style += ";list-style-type:".concat(types[attrs.type]);
+        attrs.type = void 0;
+      }
+
+      for (var _i4 = children.length; _i4--;) {
+        if (children[_i4].name == 'li') children[_i4].c = 1;
+      }
+    } // 表格处理
+    else if (node.name == 'table') {
+        // cellpadding、cellspacing、border 这几个常用表格属性需要通过转换实现
+        var padding = parseFloat(attrs.cellpadding);
+        var spacing = parseFloat(attrs.cellspacing);
+        var border = parseFloat(attrs.border);
+
+        if (node.c) {
+          // padding 和 spacing 默认 2
+          if (isNaN(padding)) padding = 2;
+          if (isNaN(spacing)) spacing = 2;
+        }
+
+        if (border) attrs.style += ";border:".concat(border, "px solid gray");
+
+        if (node.flag && node.c) {
+          // 有 colspan 或 rowspan 且含有链接的表格通过 grid 布局实现
+          styleObj.display = 'grid';
+
+          if (spacing) {
+            styleObj['grid-gap'] = "".concat(spacing, "px");
+            styleObj.padding = "".concat(spacing, "px");
+          } // 无间隔的情况下避免边框重叠
+          else if (border) attrs.style += ';border-left:0;border-top:0';
+
+          var width = [];
+          // 表格的列宽
+          var trList = [];
+          // tr 列表
+          var cells = [];
+          // 保存新的单元格
+          var map = {}; // 被合并单元格占用的格子
+
+          (function traversal(nodes) {
+            for (var _i5 = 0; _i5 < nodes.length; _i5++) {
+              if (nodes[_i5].name == 'tr') trList.push(nodes[_i5]);else traversal(nodes[_i5].children || []);
+            }
+          })(children);
+
+          for (var row = 1; row <= trList.length; row++) {
+            var col = 1;
+
+            for (var j = 0; j < trList[row - 1].children.length; j++, col++) {
+              var td = trList[row - 1].children[j];
+
+              if (td.name == 'td' || td.name == 'th') {
+                // 这个格子被上面的单元格占用，则列号++
+                while (map["".concat(row, ".").concat(col)]) {
+                  col++;
+                }
+
+                var _style2 = td.attrs.style || '';
+                var start = _style2.indexOf('width') ? _style2.indexOf(';width') : 0; // 提取出 td 的宽度
+
+                if (start != -1) {
+                  var end = _style2.indexOf(';', start + 6);
+
+                  if (end == -1) end = _style2.length;
+                  if (!td.attrs.colspan) width[col] = _style2.substring(start ? start + 7 : 6, end);
+                  _style2 = _style2.substr(0, start) + _style2.substr(end);
+                }
+
+                _style2 += (border ? ';border:'.concat(border, 'px solid gray') + (spacing ? '' : ';border-right:0;border-bottom:0') : '') + (padding ? ';padding:'.concat(padding, 'px') : ''); // 处理列合并
+
+                if (td.attrs.colspan) {
+                  _style2 += ';grid-column-start:'.concat(col, ';grid-column-end:').concat(col + parseInt(td.attrs.colspan));
+                  if (!td.attrs.rowspan) _style2 += ';grid-row-start:'.concat(row, ';grid-row-end:').concat(row + 1);
+                  col += parseInt(td.attrs.colspan) - 1;
+                } // 处理行合并
+
+                if (td.attrs.rowspan) {
+                  _style2 += ';grid-row-start:'.concat(row, ';grid-row-end:').concat(row + parseInt(td.attrs.rowspan));
+                  if (!td.attrs.colspan) _style2 += ';grid-column-start:'.concat(col, ';grid-column-end:').concat(col + 1); // 记录下方单元格被占用
+
+                  for (var k = 1; k < td.attrs.rowspan; k++) {
+                    map["".concat(row + k, ".").concat(col)] = 1;
+                  }
+                }
+
+                if (_style2) td.attrs.style = _style2;
+                cells.push(td);
+              }
+            }
+
+            if (row == 1) {
+              var temp = '';
+
+              for (var _i6 = 1; _i6 < col; _i6++) {
+                temp += "".concat(width[_i6] ? width[_i6] : 'auto', " ");
+              }
+
+              styleObj['grid-template-columns'] = temp;
+            }
+          }
+
+          node.children = cells;
+        } else {
+          // 没有使用合并单元格的表格通过 table 布局实现
+          if (node.c) styleObj.display = 'table';
+          if (!isNaN(spacing)) styleObj['border-spacing'] = "".concat(spacing, "px");
+
+          if (border || padding) {
+            // 遍历
+            (function traversal(nodes) {
+              for (var _i7 = 0; _i7 < nodes.length; _i7++) {
+                var _td = nodes[_i7];
+
+                if (_td.name == 'th' || _td.name == 'td') {
+                  if (border) _td.attrs.style = 'border:'.concat(border, 'px solid gray;').concat(_td.attrs.style || '');
+                  if (padding) _td.attrs.style = 'padding:'.concat(padding, 'px;').concat(_td.attrs.style || '');
+                } else if (_td.children) traversal(_td.children);
+              }
+            })(children);
+          }
+        } // 给表格添加一个单独的横向滚动层
+
+        if (this.options.scrollTable && !(attrs.style || '').includes('inline')) {
+          var table = _objectSpread({}, node);
+          node.name = 'div';
+          node.attrs = {
+            style: 'overflow:auto' };
+
+          node.children = [table];
+          attrs = table.attrs;
+        }
+      } else if ((node.name == 'td' || node.name == 'th') && (attrs.colspan || attrs.rowspan)) {
+        for (var _i8 = this.stack.length; _i8--;) {
+          if (this.stack[_i8].name == 'table') {
+            this.stack[_i8].flag = 1; // 指示含有合并单元格
+
+            break;
+          }
+        }
+      } // 转换 ruby
+      else if (node.name == 'ruby') {
+          node.name = 'span';
+
+          for (var _i9 = 0; _i9 < children.length - 1; _i9++) {
+            if (children[_i9].type == 'text' && children[_i9 + 1].name == 'rt') {
+              children[_i9] = {
+                name: 'div',
+                attrs: {
+                  style: 'display:inline-block' },
+
+                children: [{
+                  name: 'div',
+                  attrs: {
+                    style: 'font-size:50%;text-align:start' },
+
+                  children: children[_i9 + 1].children },
+                children[_i9]] };
+
+              children.splice(_i9 + 1, 1);
+            }
+          }
+        } else if (node.c) {
+          node.c = 2;
+
+          for (var _i10 = node.children.length; _i10--;) {
+            if (!node.children[_i10].c || node.children[_i10].name == 'table') node.c = 1;
+          }
+        }
+  if ((styleObj.display || '').includes('flex') && !node.c) {
+    for (var _i11 = children.length; _i11--;) {
+      var _item = children[_i11];
+
+      if (_item.f) {
+        _item.attrs.style = (_item.attrs.style || '') + _item.f;
+        _item.f = void 0;
+      }
+    }
+  } // flex 布局时部分样式需要提取到 rich-text 外层
+
+  var flex = parent && (parent.attrs.style || '').includes('flex')
+  // 检查基础库版本 virtualHost 是否可用
+  && !(node.c && wx.getNFCAdapter);
+
+
+
+  if (flex) node.f = ';max-width:100%';
+
+  for (var key in styleObj) {
+    if (styleObj[key]) {
+      var val = ';'.concat(key, ':').concat(styleObj[key].replace(' !important', ''));
+
+      if (flex && (key.includes('flex') && key != 'flex-direction' || key == 'align-self' || styleObj[key][0] == '-' || key == 'width' && val.includes('%'))) {
+        node.f += val;
+        if (key == 'width') attrs.style += ';width:100%';
+      } else
+      {attrs.style += val;}
+    }
+  }
+
+  attrs.style = attrs.style.substr(1) || void 0;
+};
+/**
+    * @description 解析到文本
+    * @param {String} text 文本内容
+    */
+
+parser.prototype.onText = function (text) {
+  if (!this.pre) {
+    // 合并空白符
+    var trim = '';
+    var flag;
+
+    for (var i = 0, len = text.length; i < len; i++) {
+      if (!blankChar[text[i]]) trim += text[i];else {
+        if (trim[trim.length - 1] != ' ') trim += ' ';
+        if (text[i] == '\n' && !flag) flag = true;
+      }
+    } // 去除含有换行符的空串
+
+    if (trim == ' ' && flag) return;
+    text = trim;
+  }
+
+  var node = Object.create(null);
+  node.type = 'text';
+  node.text = decodeEntity(text);
+
+  if (this.hook(node)) {
+    var siblings = this.stack.length ? this.stack[this.stack.length - 1].children : this.nodes;
+    siblings.push(node);
+  }
+};
+/**
+    * @description html 词法分析器
+    * @param {Object} handler 高层处理器
+    */
+
+function lexer(handler) {
+  this.handler = handler;
+}
+/**
+   * @description 执行解析
+   * @param {String} content 要解析的文本
+   */
+
+lexer.prototype.parse = function (content) {
+  this.content = content || '';
+  this.i = 0; // 标记解析位置
+
+  this.start = 0; // 标记一个单词的开始位置
+
+  this.state = this.text; // 当前状态
+
+  for (var len = this.content.length; this.i != -1 && this.i < len;) {
+    this.state();
+  }
+};
+/**
+    * @description 检查标签是否闭合
+    * @param {String} method 如果闭合要进行的操作
+    * @returns {Boolean} 是否闭合
+    * @private
+    */
+
+lexer.prototype.checkClose = function (method) {
+  var selfClose = this.content[this.i] == '/';
+
+  if (this.content[this.i] == '>' || selfClose && this.content[this.i + 1] == '>') {
+    if (method) this.handler[method](this.content.substring(this.start, this.i));
+    this.i += selfClose ? 2 : 1;
+    this.start = this.i;
+    this.handler.onOpenTag(selfClose);
+
+    if (this.handler.tagName == 'script') {
+      this.i = this.content.indexOf('</', this.i);
+
+      if (this.i != -1) {
+        this.i += 2;
+        this.start = this.i;
+      }
+
+      this.state = this.endTag;
+    } else this.state = this.text;
+
+    return true;
+  }
+
+  return false;
+};
+/**
+    * @description 文本状态
+    * @private
+    */
+
+lexer.prototype.text = function () {
+  this.i = this.content.indexOf('<', this.i); // 查找最近的标签
+
+  if (this.i == -1) {
+    // 没有标签了
+    if (this.start < this.content.length) this.handler.onText(this.content.substring(this.start, this.content.length));
+    return;
+  }
+
+  var c = this.content[this.i + 1];
+
+  if (c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z') {
+    // 标签开头
+    if (this.start != this.i) this.handler.onText(this.content.substring(this.start, this.i));
+    this.start = ++this.i;
+    this.state = this.tagName;
+  } else if (c == '/' || c == '!' || c == '?') {
+    if (this.start != this.i) this.handler.onText(this.content.substring(this.start, this.i));
+    var next = this.content[this.i + 2];
+
+    if (c == '/' && (next >= 'a' && next <= 'z' || next >= 'A' && next <= 'Z')) {
+      // 标签结尾
+      this.i += 2;
+      this.start = this.i;
+      return this.state = this.endTag;
+    } // 处理注释
+
+    var end = '-->';
+    if (c != '!' || this.content[this.i + 2] != '-' || this.content[this.i + 3] != '-') end = '>';
+    this.i = this.content.indexOf(end, this.i);
+
+    if (this.i != -1) {
+      this.i += end.length;
+      this.start = this.i;
+    }
+  } else this.i++;
+};
+/**
+    * @description 标签名状态
+    * @private
+    */
+
+lexer.prototype.tagName = function () {
+  if (blankChar[this.content[this.i]]) {
+    // 解析到标签名
+    this.handler.onTagName(this.content.substring(this.start, this.i));
+
+    while (blankChar[this.content[++this.i]]) {
+
+    }
+
+    if (this.i < this.content.length && !this.checkClose()) {
+      this.start = this.i;
+      this.state = this.attrName;
+    }
+  } else if (!this.checkClose('onTagName')) this.i++;
+};
+/**
+    * @description 属性名状态
+    * @private
+    */
+
+lexer.prototype.attrName = function () {
+  var c = this.content[this.i];
+
+  if (blankChar[c] || c == '=') {
+    // 解析到属性名
+    this.handler.onAttrName(this.content.substring(this.start, this.i));
+    var needVal = c == '=';
+    var len = this.content.length;
+
+    while (++this.i < len) {
+      c = this.content[this.i];
+
+      if (!blankChar[c]) {
+        if (this.checkClose()) return;
+
+        if (needVal) {
+          // 等号后遇到第一个非空字符
+          this.start = this.i;
+          return this.state = this.attrVal;
+        }
+
+        if (this.content[this.i] == '=') needVal = true;else {
+          this.start = this.i;
+          return this.state = this.attrName;
+        }
+      }
+    }
+  } else if (!this.checkClose('onAttrName')) this.i++;
+};
+/**
+    * @description 属性值状态
+    * @private
+    */
+
+lexer.prototype.attrVal = function () {
+  var c = this.content[this.i];
+  var len = this.content.length; // 有冒号的属性
+
+  if (c == '"' || c == "'") {
+    this.start = ++this.i;
+    this.i = this.content.indexOf(c, this.i);
+    if (this.i == -1) return;
+    this.handler.onAttrVal(this.content.substring(this.start, this.i));
+  } // 没有冒号的属性
+  else {
+      for (; this.i < len; this.i++) {
+        if (blankChar[this.content[this.i]]) {
+          this.handler.onAttrVal(this.content.substring(this.start, this.i));
+          break;
+        } else if (this.checkClose('onAttrVal')) return;
+      }
+    }
+
+  while (blankChar[this.content[++this.i]]) {
+
+  }
+
+  if (this.i < len && !this.checkClose()) {
+    this.start = this.i;
+    this.state = this.attrName;
+  }
+};
+/**
+    * @description 结束标签状态
+    * @returns {String} 结束的标签名
+    * @private
+    */
+
+lexer.prototype.endTag = function () {
+  var c = this.content[this.i];
+
+  if (blankChar[c] || c == '>' || c == '/') {
+    this.handler.onCloseTag(this.content.substring(this.start, this.i));
+
+    if (c != '>') {
+      this.i = this.content.indexOf('>', this.i);
+      if (this.i == -1) return;
+    }
+
+    this.start = ++this.i;
+    this.state = this.text;
+  } else this.i++;
+};
+
+module.exports = parser;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+/* 359 */,
+/* 360 */,
+/* 361 */,
+/* 362 */,
+/* 363 */,
+/* 364 */,
+/* 365 */,
+/* 366 */
+/*!****************************************************************************************!*\
+  !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/components/u-tabbar/props.js ***!
+  \****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
   props: {
-    // 轮播的长度
-    length: {
+    // 当前匹配项的name
+    value: {
+      type: [String, Number, null],
+      default: uni.$u.props.tabbar.value },
+
+    // 是否为iPhoneX留出底部安全距离
+    safeAreaInsetBottom: {
+      type: Boolean,
+      default: uni.$u.props.tabbar.safeAreaInsetBottom },
+
+    // 是否显示上方边框
+    border: {
+      type: Boolean,
+      default: uni.$u.props.tabbar.border },
+
+    // 元素层级z-index
+    zIndex: {
       type: [String, Number],
-      default: uni.$u.props.swiperIndicator.length },
+      default: uni.$u.props.tabbar.zIndex },
 
-    // 当前处于活动状态的轮播的索引
-    current: {
-      type: [String, Number],
-      default: uni.$u.props.swiperIndicator.current },
-
-    // 指示器非激活颜色
-    indicatorActiveColor: {
+    // 选中标签的颜色
+    activeColor: {
       type: String,
-      default: uni.$u.props.swiperIndicator.indicatorActiveColor },
+      default: uni.$u.props.tabbar.activeColor },
 
-    // 指示器的激活颜色
-    indicatorInactiveColor: {
+    // 未选中标签的颜色
+    inactiveColor: {
       type: String,
-      default: uni.$u.props.swiperIndicator.indicatorInactiveColor },
+      default: uni.$u.props.tabbar.inactiveColor },
 
-    // 指示器模式，line-线型，dot-点型
-    indicatorMode: {
-      type: String,
-      default: uni.$u.props.swiperIndicator.indicatorMode } } };exports.default = _default;
+    // 是否固定在底部
+    fixed: {
+      type: Boolean,
+      default: uni.$u.props.tabbar.fixed },
+
+    // fixed定位固定在底部时，是否生成一个等高元素防止塌陷
+    placeholder: {
+      type: Boolean,
+      default: uni.$u.props.tabbar.placeholder } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 312 */,
-/* 313 */,
-/* 314 */,
-/* 315 */,
-/* 316 */,
-/* 317 */,
-/* 318 */,
-/* 319 */
+/* 367 */,
+/* 368 */,
+/* 369 */,
+/* 370 */,
+/* 371 */,
+/* 372 */,
+/* 373 */,
+/* 374 */
+/*!*********************************************************************************************!*\
+  !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/components/u-tabbar-item/props.js ***!
+  \*********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
+  props: {
+    // item标签的名称，作为与u-tabbar的value参数匹配的标识符
+    name: {
+      type: [String, Number, null],
+      default: uni.$u.props.tabbarItem.name },
+
+    // uView内置图标或者绝对路径的图片
+    icon: {
+      icon: String,
+      default: uni.$u.props.tabbarItem.icon },
+
+    // 右上角的角标提示信息
+    badge: {
+      type: [String, Number, null],
+      default: uni.$u.props.tabbarItem.badge },
+
+    // 是否显示圆点，将会覆盖badge参数
+    dot: {
+      type: Boolean,
+      default: uni.$u.props.tabbarItem.dot },
+
+    // 描述文本
+    text: {
+      type: String,
+      default: uni.$u.props.tabbarItem.text },
+
+    // 控制徽标的位置，对象或者字符串形式，可以设置top和right属性
+    badgeStyle: {
+      type: [Object, String],
+      default: uni.$u.props.tabbarItem.badgeStyle } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+/* 375 */,
+/* 376 */,
+/* 377 */,
+/* 378 */,
+/* 379 */,
+/* 380 */,
+/* 381 */,
+/* 382 */
+/*!***************************************************************************************!*\
+  !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/components/u-input/props.js ***!
+  \***************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
+  props: {
+    // 输入的值
+    value: {
+      type: [String, Number],
+      default: uni.$u.props.input.value },
+
+    // 输入框类型
+    // number-数字输入键盘，app-vue下可以输入浮点数，app-nvue和小程序平台下只能输入整数
+    // idcard-身份证输入键盘，微信、支付宝、百度、QQ小程序
+    // digit-带小数点的数字键盘，App的nvue页面、微信、支付宝、百度、头条、QQ小程序
+    // text-文本输入键盘
+    type: {
+      type: String,
+      default: uni.$u.props.input.type },
+
+    // 如果 textarea 是在一个 position:fixed 的区域，需要显示指定属性 fixed 为 true，
+    // 兼容性：微信小程序、百度小程序、字节跳动小程序、QQ小程序
+    fixed: {
+      type: Boolean,
+      default: uni.$u.props.input.fixed },
+
+    // 是否禁用输入框
+    disabled: {
+      type: Boolean,
+      default: uni.$u.props.input.disabled },
+
+    // 禁用状态时的背景色
+    disabledColor: {
+      type: String,
+      default: uni.$u.props.input.disabledColor },
+
+    // 是否显示清除控件
+    clearable: {
+      type: Boolean,
+      default: uni.$u.props.input.clearable },
+
+    // 是否密码类型
+    password: {
+      type: Boolean,
+      default: uni.$u.props.input.password },
+
+    // 最大输入长度，设置为 -1 的时候不限制最大长度
+    maxlength: {
+      type: [String, Number],
+      default: uni.$u.props.input.maxlength },
+
+    // 	输入框为空时的占位符
+    placeholder: {
+      type: String,
+      default: uni.$u.props.input.placeholder },
+
+    // 指定placeholder的样式类，注意页面或组件的style中写了scoped时，需要在类名前写/deep/
+    placeholderClass: {
+      type: String,
+      default: uni.$u.props.input.placeholderClass },
+
+    // 指定placeholder的样式
+    placeholderStyle: {
+      type: [String, Object],
+      default: uni.$u.props.input.placeholderStyle },
+
+    // 是否显示输入字数统计，只在 type ="text"或type ="textarea"时有效
+    showWordLimit: {
+      type: Boolean,
+      default: uni.$u.props.input.showWordLimit },
+
+    // 设置右下角按钮的文字，有效值：send|search|next|go|done，兼容性详见uni-app文档
+    // https://uniapp.dcloud.io/component/input
+    // https://uniapp.dcloud.io/component/textarea
+    confirmType: {
+      type: String,
+      default: uni.$u.props.input.confirmType },
+
+    // 点击键盘右下角按钮时是否保持键盘不收起，H5无效
+    confirmHold: {
+      type: Boolean,
+      default: uni.$u.props.input.confirmHold },
+
+    // focus时，点击页面的时候不收起键盘，微信小程序有效
+    holdKeyboard: {
+      type: Boolean,
+      default: uni.$u.props.input.holdKeyboard },
+
+    // 自动获取焦点
+    // 在 H5 平台能否聚焦以及软键盘是否跟随弹出，取决于当前浏览器本身的实现。nvue 页面不支持，需使用组件的 focus()、blur() 方法控制焦点
+    focus: {
+      type: Boolean,
+      default: uni.$u.props.input.focus },
+
+    // 键盘收起时，是否自动失去焦点，目前仅App3.0.0+有效
+    autoBlur: {
+      type: Boolean,
+      default: uni.$u.props.input.autoBlur },
+
+    // 是否去掉 iOS 下的默认内边距，仅微信小程序，且type=textarea时有效
+    disableDefaultPadding: {
+      type: Boolean,
+      default: uni.$u.props.input.disableDefaultPadding },
+
+    // 指定focus时光标的位置
+    cursor: {
+      type: [String, Number],
+      default: uni.$u.props.input.cursor },
+
+    // 输入框聚焦时底部与键盘的距离
+    cursorSpacing: {
+      type: [String, Number],
+      default: uni.$u.props.input.cursorSpacing },
+
+    // 光标起始位置，自动聚集时有效，需与selection-end搭配使用
+    selectionStart: {
+      type: [String, Number],
+      default: uni.$u.props.input.selectionStart },
+
+    // 光标结束位置，自动聚集时有效，需与selection-start搭配使用
+    selectionEnd: {
+      type: [String, Number],
+      default: uni.$u.props.input.selectionEnd },
+
+    // 键盘弹起时，是否自动上推页面
+    adjustPosition: {
+      type: Boolean,
+      default: uni.$u.props.input.adjustPosition },
+
+    // 输入框内容对齐方式，可选值为：left|center|right
+    inputAlign: {
+      type: String,
+      default: uni.$u.props.input.inputAlign },
+
+    // 输入框字体的大小
+    fontSize: {
+      type: [String, Number],
+      default: uni.$u.props.input.fontSize },
+
+    // 输入框字体颜色
+    color: {
+      type: String,
+      default: uni.$u.props.input.color },
+
+    // 输入框前置图标
+    prefixIcon: {
+      type: String,
+      default: uni.$u.props.input.prefixIcon },
+
+    // 前置图标样式，对象或字符串
+    prefixIconStyle: {
+      type: [String, Object],
+      default: uni.$u.props.input.prefixIconStyle },
+
+    // 输入框后置图标
+    suffixIcon: {
+      type: String,
+      default: uni.$u.props.input.suffixIcon },
+
+    // 后置图标样式，对象或字符串
+    suffixIconStyle: {
+      type: [String, Object],
+      default: uni.$u.props.input.suffixIconStyle },
+
+    // 边框类型，surround-四周边框，bottom-底部边框，none-无边框
+    border: {
+      type: String,
+      default: uni.$u.props.input.border },
+
+    // 是否只读，与disabled不同之处在于disabled会置灰组件，而readonly则不会
+    readonly: {
+      type: Boolean,
+      default: uni.$u.props.input.readonly },
+
+    // 输入框形状，circle-圆形，square-方形
+    shape: {
+      type: String,
+      default: uni.$u.props.input.shape },
+
+    // 用于处理或者过滤输入框内容的方法
+    formatter: {
+      type: [Function, null],
+      default: uni.$u.props.input.formatter } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+/* 383 */,
+/* 384 */,
+/* 385 */,
+/* 386 */,
+/* 387 */,
+/* 388 */,
+/* 389 */,
+/* 390 */
 /*!**************************************************************************************!*\
   !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/components/u-text/props.js ***!
   \**************************************************************************************/
@@ -20922,12 +22609,510 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 320 */,
-/* 321 */,
-/* 322 */,
-/* 323 */,
-/* 324 */,
-/* 325 */
+/* 391 */,
+/* 392 */,
+/* 393 */,
+/* 394 */,
+/* 395 */,
+/* 396 */
+/*!**************************************************************!*\
+  !*** E:/BiyeProject/bishe/wxYueyue/components/utils/date.js ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.currentTime = currentTime;exports.timeStamp = timeStamp;exports.initData = initData;exports.initTime = initTime; //字符串拼接
+function strFormat(str) {
+  return str < 10 ? "0".concat(str) : str;
+}
+// 获取当前时间
+function currentTime() {
+  var myDate = new Date();
+  var y = myDate.getFullYear();
+  var m = myDate.getMonth() + 1;
+  var d = myDate.getDate();
+  var date = y + '-' + strFormat(m) + '-' + strFormat(d);
+
+  var hour = myDate.getHours();
+  var min = myDate.getMinutes();
+  var secon = myDate.getSeconds();
+  var time = strFormat(hour) + ':' + strFormat(min) + ':' + strFormat(secon);
+  return {
+    date: date,
+    time: time };
+
+}
+
+//时间戳转日期
+function timeStamp(time) {
+  var dates = new Date(time);
+  var year = dates.getFullYear();
+  var month = dates.getMonth() + 1;
+  var date = dates.getDate();
+  var day = dates.getDay();
+  var hour = dates.getHours();
+  var min = dates.getMinutes();
+  var days = ['日', '一', '二', '三', '四', '五', '六'];
+  return {
+    allDate: "".concat(year, "/").concat(strFormat(month), "/").concat(strFormat(date)),
+    date: "".concat(strFormat(year), "-").concat(strFormat(month), "-").concat(strFormat(date)), //返回的日期 07-01
+    day: "\u661F\u671F".concat(days[day]), //返回的礼拜天数  星期一
+    hour: strFormat(hour) + ':' + strFormat(min) + ':00' //返回的时钟 08:00
+  };
+}
+
+//获取最近7天的日期和礼拜天数
+function initData() {
+  var time = [];
+  var date = new Date();
+
+  var now = date.getTime(); //获取当前日期的时间戳
+  var timeStr = 3600 * 24 * 1000; //一天的时间戳
+  var obj = {
+    0: "今天",
+    1: "明天",
+    2: "后天" };
+
+  for (var i = 0; i < 7; i++) {var _obj$i;
+    var timeObj = {};
+    timeObj.date = timeStamp(now + timeStr * i).date; //保存日期
+    timeObj.timeStamp = now + timeStr * i; //保存时间戳
+    timeObj.week = (_obj$i = obj[i]) !== null && _obj$i !== void 0 ? _obj$i : timeStamp(now + timeStr * i).day;
+    time.push(timeObj);
+  }
+  return time;
+}
+
+//时间数组
+function initTime() {var startTime = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '10:00:00';var endTime = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '21:00:00';var timeInterval = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
+  var time = [];
+  var date = timeStamp(Date.now()).allDate;
+  var startDate = "".concat(date, " ").concat(startTime);
+  var endDate = "".concat(date, " ").concat(endTime);
+  var startTimeStamp = new Date(startDate).getTime();
+  var endTimeStamp = new Date(endDate).getTime();
+  var timeStr = 3600 * 1000 * timeInterval;
+  for (var i = startTimeStamp; i <= endTimeStamp; i = i + timeStr) {
+    var timeObj = {};
+    timeObj.time = timeStamp(i).hour;
+    timeObj.disable = false;
+    time.push(timeObj);
+  }
+  return time;
+}
+
+/***/ }),
+/* 397 */,
+/* 398 */,
+/* 399 */,
+/* 400 */,
+/* 401 */,
+/* 402 */,
+/* 403 */,
+/* 404 */
+/*!****************************************************************************************!*\
+  !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/components/u-sticky/props.js ***!
+  \****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
+  props: {
+    // 吸顶容器到顶部某个距离的时候，进行吸顶，在H5平台，NavigationBar为44px
+    offsetTop: {
+      type: [String, Number],
+      default: uni.$u.props.sticky.offsetTop },
+
+    // 自定义导航栏的高度
+    customNavHeight: {
+      type: [String, Number],
+
+
+
+
+
+      default: uni.$u.props.sticky.customNavHeight },
+
+
+    // 是否开启吸顶功能
+    disabled: {
+      type: Boolean,
+      default: uni.$u.props.sticky.disabled },
+
+    // 吸顶区域的背景颜色
+    bgColor: {
+      type: String,
+      default: uni.$u.props.sticky.bgColor },
+
+    // z-index值
+    zIndex: {
+      type: [String, Number],
+      default: uni.$u.props.sticky.zIndex },
+
+    // 列表中的索引值
+    index: {
+      type: [String, Number],
+      default: uni.$u.props.sticky.index } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+/* 405 */,
+/* 406 */,
+/* 407 */,
+/* 408 */,
+/* 409 */,
+/* 410 */,
+/* 411 */,
+/* 412 */
+/*!**************************************************************************************!*\
+  !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/components/u-tabs/props.js ***!
+  \**************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
+  props: {
+    // 滑块的移动过渡时间，单位ms
+    duration: {
+      type: Number,
+      default: uni.$u.props.tabs.duration },
+
+    // tabs标签数组
+    list: {
+      type: Array,
+      default: uni.$u.props.tabs.list },
+
+    // 滑块颜色
+    lineColor: {
+      type: String,
+      default: uni.$u.props.tabs.lineColor },
+
+    // 菜单选择中时的样式
+    activeStyle: {
+      type: [String, Object],
+      default: uni.$u.props.tabs.activeStyle },
+
+    // 菜单非选中时的样式
+    inactiveStyle: {
+      type: [String, Object],
+      default: uni.$u.props.tabs.inactiveStyle },
+
+    // 滑块长度
+    lineWidth: {
+      type: [String, Number],
+      default: uni.$u.props.tabs.lineWidth },
+
+    // 滑块高度
+    lineHeight: {
+      type: [String, Number],
+      default: uni.$u.props.tabs.lineHeight },
+
+    // 菜单item的样式
+    itemStyle: {
+      type: [String, Object],
+      default: uni.$u.props.tabs.itemStyle },
+
+    // 菜单是否可滚动
+    scrollable: {
+      type: Boolean,
+      default: uni.$u.props.tabs.scrollable },
+
+    // 当前选中标签的索引
+    current: {
+      type: [Number, String],
+      default: uni.$u.props.tabs.current },
+
+    // 默认读取的键名
+    keyName: {
+      type: String,
+      default: uni.$u.props.tabs.keyName } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+/* 413 */,
+/* 414 */,
+/* 415 */,
+/* 416 */,
+/* 417 */,
+/* 418 */,
+/* 419 */,
+/* 420 */,
+/* 421 */,
+/* 422 */,
+/* 423 */,
+/* 424 */,
+/* 425 */,
+/* 426 */,
+/* 427 */,
+/* 428 */
+/*!********************************************************************************!*\
+  !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/libs/mixin/button.js ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
+  props: {
+    lang: String,
+    sessionFrom: String,
+    sendMessageTitle: String,
+    sendMessagePath: String,
+    sendMessageImg: String,
+    showMessageCard: Boolean,
+    appParameter: String,
+    formType: String,
+    openType: String } };exports.default = _default;
+
+/***/ }),
+/* 429 */
+/*!**********************************************************************************!*\
+  !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/libs/mixin/openType.js ***!
+  \**********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
+  props: {
+    openType: String },
+
+  methods: {
+    onGetUserInfo: function onGetUserInfo(event) {
+      this.$emit('getuserinfo', event.detail);
+    },
+    onContact: function onContact(event) {
+      this.$emit('contact', event.detail);
+    },
+    onGetPhoneNumber: function onGetPhoneNumber(event) {
+      this.$emit('getphonenumber', event.detail);
+    },
+    onError: function onError(event) {
+      this.$emit('error', event.detail);
+    },
+    onLaunchApp: function onLaunchApp(event) {
+      this.$emit('launchapp', event.detail);
+    },
+    onOpenSetting: function onOpenSetting(event) {
+      this.$emit('opensetting', event.detail);
+    } } };exports.default = _default;
+
+/***/ }),
+/* 430 */,
+/* 431 */,
+/* 432 */,
+/* 433 */,
+/* 434 */,
+/* 435 */,
+/* 436 */,
+/* 437 */,
+/* 438 */,
+/* 439 */,
+/* 440 */,
+/* 441 */,
+/* 442 */,
+/* 443 */,
+/* 444 */,
+/* 445 */
+/*!*****************************************************************************************!*\
+  !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/components/u-overlay/props.js ***!
+  \*****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
+  props: {
+    // 是否显示遮罩
+    show: {
+      type: Boolean,
+      default: uni.$u.props.overlay.show },
+
+    // 层级z-index
+    zIndex: {
+      type: [String, Number],
+      default: uni.$u.props.overlay.zIndex },
+
+    // 遮罩的过渡时间，单位为ms
+    duration: {
+      type: [String, Number],
+      default: uni.$u.props.overlay.duration },
+
+    // 不透明度值，当做rgba的第四个参数
+    opacity: {
+      type: [String, Number],
+      default: uni.$u.props.overlay.opacity } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+/* 446 */,
+/* 447 */,
+/* 448 */,
+/* 449 */,
+/* 450 */,
+/* 451 */,
+/* 452 */,
+/* 453 */
+/*!**********************************************************************************************!*\
+  !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/components/u-loading-icon/props.js ***!
+  \**********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
+  props: {
+    // 是否显示组件
+    show: {
+      type: Boolean,
+      default: uni.$u.props.loadingIcon.show },
+
+    // 颜色
+    color: {
+      type: String,
+      default: uni.$u.props.loadingIcon.color },
+
+    // 提示文字颜色
+    textColor: {
+      type: String,
+      default: uni.$u.props.loadingIcon.textColor },
+
+    // 文字和图标是否垂直排列
+    vertical: {
+      type: Boolean,
+      default: uni.$u.props.loadingIcon.vertical },
+
+    // 模式选择，circle-圆形，spinner-花朵形，semicircle-半圆形
+    mode: {
+      type: String,
+      default: uni.$u.props.loadingIcon.mode },
+
+    // 图标大小，单位默认px
+    size: {
+      type: [String, Number],
+      default: uni.$u.props.loadingIcon.size },
+
+    // 文字大小
+    textSize: {
+      type: [String, Number],
+      default: uni.$u.props.loadingIcon.textSize },
+
+    // 文字内容
+    text: {
+      type: [String, Number],
+      default: uni.$u.props.loadingIcon.text },
+
+    // 动画模式
+    timingFunction: {
+      type: String,
+      default: uni.$u.props.loadingIcon.timingFunction },
+
+    // 动画执行周期时间
+    duration: {
+      type: [String, Number],
+      default: uni.$u.props.loadingIcon.duration },
+
+    // mode=circle时的暗边颜色
+    inactiveColor: {
+      type: String,
+      default: uni.$u.props.loadingIcon.inactiveColor } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+/* 454 */,
+/* 455 */,
+/* 456 */,
+/* 457 */,
+/* 458 */,
+/* 459 */,
+/* 460 */,
+/* 461 */
+/*!*************************************************************************************!*\
+  !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/components/u-gap/props.js ***!
+  \*************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
+  props: {
+    // 背景颜色（默认transparent）
+    bgColor: {
+      type: String,
+      default: uni.$u.props.gap.bgColor },
+
+    // 分割槽高度，单位px（默认30）
+    height: {
+      type: [String, Number],
+      default: uni.$u.props.gap.height },
+
+    // 与上一个组件的距离
+    marginTop: {
+      type: [String, Number],
+      default: uni.$u.props.gap.marginTop },
+
+    // 与下一个组件的距离
+    marginBottom: {
+      type: [String, Number],
+      default: uni.$u.props.gap.marginBottom } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+/* 462 */,
+/* 463 */,
+/* 464 */,
+/* 465 */,
+/* 466 */,
+/* 467 */,
+/* 468 */,
+/* 469 */
+/*!**************************************************************************************************!*\
+  !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/components/u-swiper-indicator/props.js ***!
+  \**************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
+  props: {
+    // 轮播的长度
+    length: {
+      type: [String, Number],
+      default: uni.$u.props.swiperIndicator.length },
+
+    // 当前处于活动状态的轮播的索引
+    current: {
+      type: [String, Number],
+      default: uni.$u.props.swiperIndicator.current },
+
+    // 指示器非激活颜色
+    indicatorActiveColor: {
+      type: String,
+      default: uni.$u.props.swiperIndicator.indicatorActiveColor },
+
+    // 指示器的激活颜色
+    indicatorInactiveColor: {
+      type: String,
+      default: uni.$u.props.swiperIndicator.indicatorInactiveColor },
+
+    // 指示器模式，line-线型，dot-点型
+    indicatorMode: {
+      type: String,
+      default: uni.$u.props.swiperIndicator.indicatorMode } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+/* 470 */,
+/* 471 */,
+/* 472 */,
+/* 473 */,
+/* 474 */,
+/* 475 */,
+/* 476 */,
+/* 477 */
 /*!**************************************************************************************!*\
   !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/components/u-line/props.js ***!
   \**************************************************************************************/
@@ -20968,14 +23153,14 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 326 */,
-/* 327 */,
-/* 328 */,
-/* 329 */,
-/* 330 */,
-/* 331 */,
-/* 332 */,
-/* 333 */
+/* 478 */,
+/* 479 */,
+/* 480 */,
+/* 481 */,
+/* 482 */,
+/* 483 */,
+/* 484 */,
+/* 485 */
 /*!********************************************************************************************!*\
   !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/components/u-transition/props.js ***!
   \********************************************************************************************/
@@ -21007,7 +23192,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 334 */
+/* 486 */
 /*!*************************************************************************************************!*\
   !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/components/u-transition/transition.js ***!
   \*************************************************************************************************/
@@ -21018,7 +23203,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 36));
 
 
-var _nvueAniMap = _interopRequireDefault(__webpack_require__(/*! ./nvue.ani-map.js */ 335));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} // 定义一个一定时间后自动成功的promise，让调用nextTick方法处，进入下一个then方法
+var _nvueAniMap = _interopRequireDefault(__webpack_require__(/*! ./nvue.ani-map.js */ 487));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} // 定义一个一定时间后自动成功的promise，让调用nextTick方法处，进入下一个then方法
 var nextTick = function nextTick() {return new Promise(function (resolve) {return setTimeout(resolve, 1000 / 50);});}; // nvue动画模块实现细节抽离在外部文件
 
 // 定义类名，通过给元素动态切换类名，赋予元素一定的css动画样式
@@ -21170,7 +23355,7 @@ var getClassNames = function getClassNames(name) {return {
     } } };exports.default = _default;
 
 /***/ }),
-/* 335 */
+/* 487 */
 /*!***************************************************************************************************!*\
   !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/components/u-transition/nvue.ani-map.js ***!
   \***************************************************************************************************/
@@ -21246,14 +23431,129 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
     'leave-to': { opacity: 0, transform: 'scale(0.95)' } } };exports.default = _default;
 
 /***/ }),
-/* 336 */,
-/* 337 */,
-/* 338 */,
-/* 339 */,
-/* 340 */,
-/* 341 */,
-/* 342 */,
-/* 343 */
+/* 488 */,
+/* 489 */,
+/* 490 */,
+/* 491 */,
+/* 492 */,
+/* 493 */,
+/* 494 */,
+/* 495 */,
+/* 496 */,
+/* 497 */,
+/* 498 */,
+/* 499 */,
+/* 500 */,
+/* 501 */,
+/* 502 */,
+/* 503 */,
+/* 504 */
+/*!*********************************************************************************************!*\
+  !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/components/u-safe-bottom/props.js ***!
+  \*********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
+  props: {} };exports.default = _default;
+
+/***/ }),
+/* 505 */,
+/* 506 */,
+/* 507 */,
+/* 508 */,
+/* 509 */,
+/* 510 */,
+/* 511 */,
+/* 512 */
+/*!***************************************************************************************!*\
+  !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/components/u-badge/props.js ***!
+  \***************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
+  props: {
+    // 是否显示圆点
+    isDot: {
+      type: Boolean,
+      default: uni.$u.props.badge.isDot },
+
+    // 显示的内容
+    value: {
+      type: [Number, String],
+      default: uni.$u.props.badge.value },
+
+    // 是否显示
+    show: {
+      type: Boolean,
+      default: uni.$u.props.badge.show },
+
+    // 最大值，超过最大值会显示 '{max}+'
+    max: {
+      type: [Number, String],
+      default: uni.$u.props.badge.max },
+
+    // 主题类型，error|warning|success|primary
+    type: {
+      type: String,
+      default: uni.$u.props.badge.type },
+
+    // 当数值为 0 时，是否展示 Badge
+    showZero: {
+      type: Boolean,
+      default: uni.$u.props.badge.showZero },
+
+    // 背景颜色，优先级比type高，如设置，type参数会失效
+    bgColor: {
+      type: [String, null],
+      default: uni.$u.props.badge.bgColor },
+
+    // 字体颜色
+    color: {
+      type: [String, null],
+      default: uni.$u.props.badge.color },
+
+    // 徽标形状，circle-四角均为圆角，horn-左下角为直角
+    shape: {
+      type: String,
+      default: uni.$u.props.badge.shape },
+
+    // 设置数字的显示方式，overflow|ellipsis|limit
+    // overflow会根据max字段判断，超出显示`${max}+`
+    // ellipsis会根据max判断，超出显示`${max}...`
+    // limit会依据1000作为判断条件，超出1000，显示`${value/1000}K`，比如2.2k、3.34w，最多保留2位小数
+    numberType: {
+      type: String,
+      default: uni.$u.props.badge.numberType },
+
+    // 设置badge的位置偏移，格式为 [x, y]，也即设置的为top和right的值，absolute为true时有效
+    offset: {
+      type: Array,
+      default: uni.$u.props.badge.offset },
+
+    // 是否反转背景和字体颜色
+    inverted: {
+      type: Boolean,
+      default: uni.$u.props.badge.inverted },
+
+    // 是否绝对定位
+    absolute: {
+      type: Boolean,
+      default: uni.$u.props.badge.absolute } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+/* 513 */,
+/* 514 */,
+/* 515 */,
+/* 516 */,
+/* 517 */,
+/* 518 */,
+/* 519 */,
+/* 520 */
 /*!**************************************************************************************!*\
   !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/components/u-text/value.js ***!
   \**************************************************************************************/
@@ -21347,68 +23647,14 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 344 */
-/*!********************************************************************************!*\
-  !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/libs/mixin/button.js ***!
-  \********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
-  props: {
-    lang: String,
-    sessionFrom: String,
-    sendMessageTitle: String,
-    sendMessagePath: String,
-    sendMessageImg: String,
-    showMessageCard: Boolean,
-    appParameter: String,
-    formType: String,
-    openType: String } };exports.default = _default;
-
-/***/ }),
-/* 345 */
-/*!**********************************************************************************!*\
-  !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/libs/mixin/openType.js ***!
-  \**********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
-  props: {
-    openType: String },
-
-  methods: {
-    onGetUserInfo: function onGetUserInfo(event) {
-      this.$emit('getuserinfo', event.detail);
-    },
-    onContact: function onContact(event) {
-      this.$emit('contact', event.detail);
-    },
-    onGetPhoneNumber: function onGetPhoneNumber(event) {
-      this.$emit('getphonenumber', event.detail);
-    },
-    onError: function onError(event) {
-      this.$emit('error', event.detail);
-    },
-    onLaunchApp: function onLaunchApp(event) {
-      this.$emit('launchapp', event.detail);
-    },
-    onOpenSetting: function onOpenSetting(event) {
-      this.$emit('opensetting', event.detail);
-    } } };exports.default = _default;
-
-/***/ }),
-/* 346 */,
-/* 347 */,
-/* 348 */,
-/* 349 */,
-/* 350 */,
-/* 351 */,
-/* 352 */,
-/* 353 */
+/* 521 */,
+/* 522 */,
+/* 523 */,
+/* 524 */,
+/* 525 */,
+/* 526 */,
+/* 527 */,
+/* 528 */
 /*!**************************************************************************************!*\
   !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/components/u-link/props.js ***!
   \**************************************************************************************/
@@ -21455,192 +23701,273 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 354 */,
-/* 355 */,
-/* 356 */,
-/* 357 */,
-/* 358 */,
-/* 359 */,
-/* 360 */,
-/* 361 */,
-/* 362 */,
-/* 363 */,
-/* 364 */,
-/* 365 */,
-/* 366 */,
-/* 367 */,
-/* 368 */,
-/* 369 */,
-/* 370 */,
-/* 371 */,
-/* 372 */,
-/* 373 */,
-/* 374 */,
-/* 375 */,
-/* 376 */,
-/* 377 */,
-/* 378 */,
-/* 379 */,
-/* 380 */,
-/* 381 */,
-/* 382 */,
-/* 383 */,
-/* 384 */,
-/* 385 */
-/*!******************************************************************************************!*\
-  !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/components/u-loadmore/props.js ***!
-  \******************************************************************************************/
+/* 529 */,
+/* 530 */,
+/* 531 */,
+/* 532 */,
+/* 533 */,
+/* 534 */,
+/* 535 */,
+/* 536 */,
+/* 537 */,
+/* 538 */,
+/* 539 */,
+/* 540 */,
+/* 541 */,
+/* 542 */,
+/* 543 */,
+/* 544 */,
+/* 545 */,
+/* 546 */,
+/* 547 */,
+/* 548 */,
+/* 549 */,
+/* 550 */,
+/* 551 */,
+/* 552 */,
+/* 553 */,
+/* 554 */,
+/* 555 */,
+/* 556 */,
+/* 557 */,
+/* 558 */,
+/* 559 */,
+/* 560 */,
+/* 561 */,
+/* 562 */,
+/* 563 */,
+/* 564 */,
+/* 565 */
+/*!********************************************************************************************!*\
+  !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/components/u-subsection/props.js ***!
+  \********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
   props: {
-    // 组件状态，loadmore-加载前的状态，loading-加载中的状态，nomore-没有更多的状态
-    status: {
-      type: String,
-      default: uni.$u.props.loadmore.status },
+    // tab的数据
+    list: {
+      type: Array,
+      default: uni.$u.props.subsection.list },
 
-    // 组件背景色
-    bgColor: {
-      type: String,
-      default: uni.$u.props.loadmore.bgColor },
+    // 当前活动的tab的index
+    current: {
+      type: [String, Number],
+      default: uni.$u.props.subsection.current },
 
-    // 是否显示加载中的图标
-    icon: {
-      type: Boolean,
-      default: uni.$u.props.loadmore.icon },
+    // 激活的颜色
+    activeColor: {
+      type: String,
+      default: uni.$u.props.subsection.activeColor },
+
+    // 未激活的颜色
+    inactiveColor: {
+      type: String,
+      default: uni.$u.props.subsection.inactiveColor },
+
+    // 模式选择，mode=button为按钮形式，mode=subsection时为分段模式
+    mode: {
+      type: String,
+      default: uni.$u.props.subsection.mode },
 
     // 字体大小
     fontSize: {
       type: [String, Number],
-      default: uni.$u.props.loadmore.fontSize },
+      default: uni.$u.props.subsection.fontSize },
 
-    // 字体颜色
-    color: {
-      type: String,
-      default: uni.$u.props.loadmore.color },
-
-
-    // 加载中状态的图标，spinner-花朵状图标，circle-圆圈状，semicircle-半圆
-    loadingIcon: {
-      type: String,
-      default: uni.$u.props.loadmore.loadingIcon },
-
-    // 加载前的提示语
-    loadmoreText: {
-      type: String,
-      default: uni.$u.props.loadmore.loadmoreText },
-
-    // 加载中提示语
-    loadingText: {
-      type: String,
-      default: uni.$u.props.loadmore.loadingText },
-
-    // 没有更多的提示语
-    nomoreText: {
-      type: String,
-      default: uni.$u.props.loadmore.nomoreText },
-
-    // 在“没有更多”状态下，是否显示粗点
-    isDot: {
+    // 激活tab的字体是否加粗
+    bold: {
       type: Boolean,
-      default: uni.$u.props.loadmore.isDot },
+      default: uni.$u.props.subsection.bold },
 
-    // 加载中图标的颜色
-    iconColor: {
+    // mode = button时，组件背景颜色
+    bgColor: {
       type: String,
-      default: uni.$u.props.loadmore.iconColor },
+      default: uni.$u.props.subsection.bgColor },
 
-    // 上边距
-    marginTop: {
-      type: [String, Number],
-      default: uni.$u.props.loadmore.marginTop },
-
-    // 下边距
-    marginBottom: {
-      type: [String, Number],
-      default: uni.$u.props.loadmore.marginBottom },
-
-    // 高度，单位px
-    height: {
-      type: [String, Number],
-      default: uni.$u.props.loadmore.height },
-
-    // 是否显示左边分割线
-    line: {
-      type: Boolean,
-      default: uni.$u.props.loadmore.line } } };exports.default = _default;
+    // 从list元素对象中读取的键名
+    keyName: {
+      type: String,
+      default: uni.$u.props.subsection.keyName } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 386 */,
-/* 387 */,
-/* 388 */,
-/* 389 */,
-/* 390 */,
-/* 391 */,
-/* 392 */,
-/* 393 */,
-/* 394 */
-/*!******************************************************************************************!*\
-  !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/components/u-back-top/props.js ***!
-  \******************************************************************************************/
+/* 566 */,
+/* 567 */,
+/* 568 */,
+/* 569 */,
+/* 570 */,
+/* 571 */,
+/* 572 */,
+/* 573 */,
+/* 574 */
+/*!****************************************************************************************!*\
+  !*** E:/BiyeProject/bishe/wxYueyue/node_modules/uview-ui/components/u-button/props.js ***!
+  \****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; /*
+                                                                                                      * @Author       : LQ
+                                                                                                      * @Description  :
+                                                                                                      * @version      : 1.0
+                                                                                                      * @Date         : 2021-08-16 10:04:04
+                                                                                                      * @LastAuthor   : LQ
+                                                                                                      * @lastTime     : 2021-08-16 10:04:24
+                                                                                                      * @FilePath     : /u-view2.0/uview-ui/components/u-button/props.js
+                                                                                                      */var _default =
+{
   props: {
-    // 返回顶部的形状，circle-圆形，square-方形
-    mode: {
-      type: String,
-      default: uni.$u.props.backtop.mode },
+    // 是否细边框
+    hairline: {
+      type: Boolean,
+      default: uni.$u.props.button.hairline },
 
-    // 自定义图标
+    // 按钮的预置样式，info，primary，error，warning，success
+    type: {
+      type: String,
+      default: uni.$u.props.button.type },
+
+    // 按钮尺寸，large，normal，small，mini
+    size: {
+      type: String,
+      default: uni.$u.props.button.size },
+
+    // 按钮形状，circle（两边为半圆），square（带圆角）
+    shape: {
+      type: String,
+      default: uni.$u.props.button.shape },
+
+    // 按钮是否镂空
+    plain: {
+      type: Boolean,
+      default: uni.$u.props.button.plain },
+
+    // 是否禁止状态
+    disabled: {
+      type: Boolean,
+      default: uni.$u.props.button.disabled },
+
+    // 是否加载中
+    loading: {
+      type: Boolean,
+      default: uni.$u.props.button.loading },
+
+    // 加载中提示文字
+    loadingText: {
+      type: [String, Number],
+      default: uni.$u.props.button.loadingText },
+
+    // 加载状态图标类型
+    loadingMode: {
+      type: String,
+      default: uni.$u.props.button.loadingMode },
+
+    // 加载图标大小
+    loadingSize: {
+      type: [String, Number],
+      default: uni.$u.props.button.loadingSize },
+
+    // 开放能力，具体请看uniapp稳定关于button组件部分说明
+    // https://uniapp.dcloud.io/component/button
+    openType: {
+      type: String,
+      default: uni.$u.props.button.openType },
+
+    // 用于 <form> 组件，点击分别会触发 <form> 组件的 submit/reset 事件
+    // 取值为submit（提交表单），reset（重置表单）
+    formType: {
+      type: String,
+      default: uni.$u.props.button.formType },
+
+    // 打开 APP 时，向 APP 传递的参数，open-type=launchApp时有效
+    // 只微信小程序、QQ小程序有效
+    appParameter: {
+      type: String,
+      default: uni.$u.props.button.appParameter },
+
+    // 指定是否阻止本节点的祖先节点出现点击态，微信小程序有效
+    hoverStopPropagation: {
+      type: Boolean,
+      default: uni.$u.props.button.hoverStopPropagation },
+
+    // 指定返回用户信息的语言，zh_CN 简体中文，zh_TW 繁体中文，en 英文。只微信小程序有效
+    lang: {
+      type: String,
+      default: uni.$u.props.button.lang },
+
+    // 会话来源，open-type="contact"时有效。只微信小程序有效
+    sessionFrom: {
+      type: String,
+      default: uni.$u.props.button.sessionFrom },
+
+    // 会话内消息卡片标题，open-type="contact"时有效
+    // 默认当前标题，只微信小程序有效
+    sendMessageTitle: {
+      type: String,
+      default: uni.$u.props.button.sendMessageTitle },
+
+    // 会话内消息卡片点击跳转小程序路径，open-type="contact"时有效
+    // 默认当前分享路径，只微信小程序有效
+    sendMessagePath: {
+      type: String,
+      default: uni.$u.props.button.sendMessagePath },
+
+    // 会话内消息卡片图片，open-type="contact"时有效
+    // 默认当前页面截图，只微信小程序有效
+    sendMessageImg: {
+      type: String,
+      default: uni.$u.props.button.sendMessageImg },
+
+    // 是否显示会话内消息卡片，设置此参数为 true，用户进入客服会话会在右下角显示"可能要发送的小程序"提示，
+    // 用户点击后可以快速发送小程序消息，open-type="contact"时有效
+    showMessageCard: {
+      type: Boolean,
+      default: uni.$u.props.button.showMessageCard },
+
+    // 额外传参参数，用于小程序的data-xxx属性，通过target.dataset.name获取
+    dataName: {
+      type: String,
+      default: uni.$u.props.button.dataName },
+
+    // 节流，一定时间内只能触发一次
+    throttleTime: {
+      type: [String, Number],
+      default: uni.$u.props.button.throttleTime },
+
+    // 按住后多久出现点击态，单位毫秒
+    hoverStartTime: {
+      type: [String, Number],
+      default: uni.$u.props.button.hoverStartTime },
+
+    // 手指松开后点击态保留时间，单位毫秒
+    hoverStayTime: {
+      type: [String, Number],
+      default: uni.$u.props.button.hoverStayTime },
+
+    // 按钮文字，之所以通过props传入，是因为slot传入的话
+    // nvue中无法控制文字的样式
+    text: {
+      type: [String, Number],
+      default: uni.$u.props.button.text },
+
+    // 按钮图标
     icon: {
       type: String,
-      default: uni.$u.props.backtop.icon },
+      default: uni.$u.props.button.icon },
 
-    // 提示文字
-    text: {
+    // 按钮图标
+    iconColor: {
       type: String,
-      default: uni.$u.props.backtop.text },
+      default: uni.$u.props.button.icon },
 
-    // 返回顶部滚动时间
-    duration: {
-      type: [String, Number],
-      default: uni.$u.props.backtop.duration },
-
-    // 滚动距离
-    scrollTop: {
-      type: [String, Number],
-      default: uni.$u.props.backtop.scrollTop },
-
-    // 距离顶部多少距离显示，单位px
-    top: {
-      type: [String, Number],
-      default: uni.$u.props.backtop.top },
-
-    // 返回顶部按钮到底部的距离，单位px
-    bottom: {
-      type: [String, Number],
-      default: uni.$u.props.backtop.bottom },
-
-    // 返回顶部按钮到右边的距离，单位px
-    right: {
-      type: [String, Number],
-      default: uni.$u.props.backtop.right },
-
-    // 层级
-    zIndex: {
-      type: [String, Number],
-      default: uni.$u.props.backtop.zIndex },
-
-    // 图标的样式，对象形式
-    iconStyle: {
-      type: Object,
-      default: uni.$u.props.backtop.iconStyle } } };exports.default = _default;
+    // 按钮颜色，支持传入linear-gradient渐变色
+    color: {
+      type: String,
+      default: uni.$u.props.button.color } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ })

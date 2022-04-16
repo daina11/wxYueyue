@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "u-toast": "/node-modules/uview-ui/components/u-toast/u-toast",
+    "u-input": "/node-modules/uview-ui/components/u-input/u-input",
+    "u--text": "/node-modules/uview-ui/components/u--text/u--text",
+    "times": "/components/pretty-times/pretty-times"
+  }
+}

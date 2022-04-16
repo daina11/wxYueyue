@@ -62,9 +62,6 @@
 .data-v-3d3a40f7 .switch {
   margin: 15px 5px 15px 5px;
 }
-.data-v-3d3a40f7 .switch .u-swiper {
-  border-radius: 20px !important;
-}
 .data-v-3d3a40f7 .category {
   margin: 15px 5px 15px 5px;
   background-color: #FFFFFF;
@@ -72,13 +69,5 @@
 }
 .data-v-3d3a40f7 .category .u-image__image {
   margin-top: 10px;
-}
-.data-v-3d3a40f7 .serch {
-  background-color: #FFFFFF;
-  border-radius: 20px;
-  margin-top: 20px;
-}
-.data-v-3d3a40f7 .serch .u-border {
-  border-color: #b6292f !important;
 }
 

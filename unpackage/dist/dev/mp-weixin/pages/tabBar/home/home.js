@@ -95,32 +95,32 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
-    "u-Input": function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u--input/u--input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u--input/u--input")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u--input/u--input.vue */ 169))
+    uSearch: function() {
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-search/u-search */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-search/u-search")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-search/u-search.vue */ 211))
     },
     uGrid: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-grid/u-grid */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-grid/u-grid")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-grid/u-grid.vue */ 175))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-grid/u-grid */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-grid/u-grid")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-grid/u-grid.vue */ 219))
     },
     uGridItem: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-grid-item/u-grid-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-grid-item/u-grid-item")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-grid-item/u-grid-item.vue */ 183))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-grid-item/u-grid-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-grid-item/u-grid-item")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-grid-item/u-grid-item.vue */ 227))
     },
     "u-Image": function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u--image/u--image */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u--image/u--image")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u--image/u--image.vue */ 191))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u--image/u--image */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u--image/u--image")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u--image/u--image.vue */ 235))
     },
     uToast: function() {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-toast/u-toast */ "node-modules/uview-ui/components/u-toast/u-toast").then(__webpack_require__.bind(null, /*! uview-ui/components/u-toast/u-toast.vue */ 197))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-toast/u-toast */ "node-modules/uview-ui/components/u-toast/u-toast").then(__webpack_require__.bind(null, /*! uview-ui/components/u-toast/u-toast.vue */ 241))
     },
     uSwiper: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-swiper/u-swiper */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-swiper/u-swiper")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-swiper/u-swiper.vue */ 204))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-swiper/u-swiper */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-swiper/u-swiper")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-swiper/u-swiper.vue */ 248))
     },
     uniCard: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-card/components/uni-card/uni-card */ "uni_modules/uni-card/components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-card/components/uni-card/uni-card.vue */ 212))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-card/components/uni-card/uni-card */ "uni_modules/uni-card/components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-card/components/uni-card/uni-card.vue */ 256))
     },
     uLoadmore: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-loadmore/u-loadmore */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-loadmore/u-loadmore")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-loadmore/u-loadmore.vue */ 380))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-loadmore/u-loadmore */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-loadmore/u-loadmore")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-loadmore/u-loadmore.vue */ 263))
     },
     uBackTop: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-back-top/u-back-top */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-back-top/u-back-top")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-back-top/u-back-top.vue */ 389))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-back-top/u-back-top */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-back-top/u-back-top")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-back-top/u-back-top.vue */ 271))
     }
   }
 } catch (e) {
@@ -221,6 +221,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
 var _api = __webpack_require__(/*! @/config/api.js */ 146); //
 //
 //
@@ -264,9 +268,13 @@ var _api = __webpack_require__(/*! @/config/api.js */ 146); //
 //
 //
 //
-var _default = { data: function data() {return { categorylist: {}, switchlist: {}, totalPages: '', shoplist: {}, page: 0, status: 'loadmore', scrollTop: 0, iconStyle: { color: '#FFFFFF' } };}, onPageScroll: function onPageScroll(e) {this.scrollTop = e.scrollTop;}, onReachBottom: function onReachBottom() {var _this = this;this.status = 'loading';this.page += 1;if (this.totalPages <= this.page) {this.status = 'nomore';} else {//加载下一页
-      setTimeout(function () {(0, _api.getshop)({ params: { page: _this.page } }).then(function (res) {_this.totalPages = res.totalPages;_this.shoplist = _this.shoplist.concat(res.content);}).catch(function () {});}, 1000);}},
-  onLoad: function onLoad() {var _this2 = this;
+//
+//
+//
+//
+var _default = { data: function data() {return { categorylist: {}, switchlist: {}, totalPages: '', shoplist: {}, page: 0, status: 'loadmore', scrollTop: 0, iconStyle: { color: '#FFFFFF' }, slable: '' };}, onPageScroll: function onPageScroll(e) {this.scrollTop = e.scrollTop;}, onReachBottom: function onReachBottom() {var _this = this;this.status = 'loading';this.page += 1;if (this.totalPages <= this.page) {this.status = 'nomore';} else {//加载下一页
+      setTimeout(function () {(0, _api.getshop)({ params: { page: _this.page } }).then(function (res) {_this.totalPages = res.totalPages;_this.shoplist = _this.shoplist.concat(res.content);}).catch(function () {});}, 800);}}, onLoad: function onLoad() {var _this2 = this;uni.setNavigationBarTitle({ title: '预餐首页' });
+
     (0, _api.getcategory)({}).then(function (res) {
       _this2.categorylist = res;
     }).catch(function () {
@@ -294,9 +302,33 @@ var _default = { data: function data() {return { categorylist: {}, switchlist: {
   methods: {
     categoryDetail: function categoryDetail(name) {
       //console.log(name)
+      uni.$u.route({
+        url: 'pages/fenleiindex/fenleiindex',
+        params: {
+          id: name } });
+
+
     },
+    //搜索
+    search: function search(value) {
+      uni.$u.route({
+        url: 'pages/searchindex/searchindex',
+        params: {
+          searchword: this.slable } });
+
+
+    },
+
+
     clickswitch: function clickswitch(id) {
-      console.log(this.switchlist[id].shopId);
+
+      uni.$u.route({
+        url: 'pages/shopindex/shopindex',
+        params: {
+          id: this.switchlist[id].shopId } });
+
+
+
     },
     to_detail: function to_detail(id) {
       uni.$u.route({

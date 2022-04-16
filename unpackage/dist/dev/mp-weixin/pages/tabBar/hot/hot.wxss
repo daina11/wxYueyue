@@ -50,13 +50,22 @@
   margin-bottom: 10px;
 }
 .shop.data-v-76e06a73 .uni-card .c-text {
+  font-size: 15px;
   color: #606266;
-  height: 85px;
+  font-weight: 800;
+  height: 65px;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+}
+.shop.data-v-76e06a73 .uni-card .location {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
 }
 .shop.data-v-76e06a73 .uni-card .price {
   font-size: 18px;

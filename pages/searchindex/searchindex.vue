@@ -15,6 +15,9 @@
 
 						<view class="c-name">{{listItem.name}}</view>
 						<view class="c-text">{{listItem.title}}</view>
+						<view class="location">
+							位置：{{listItem.location}}
+						</view>
 						<view class="b-text">
 							<text class="price">￥{{listItem.price}}</text><text
 								class="yy">{{listItem.subscribeStatus.name}}</text>
@@ -158,16 +161,24 @@
 				margin-bottom: 10px;
 			}
 			.c-text {
-				color: $u-content-color;
-				height: 85px;
+			font-size: 15px;
+			color: $u-content-color;
+			font-weight: 800;
+			height: 65px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp: 2;
+			}
+			.location{
+				
 				overflow: hidden;
 				text-overflow: ellipsis;
-				;
 				display: -webkit-box;
 				-webkit-box-orient: vertical;
-				-webkit-line-clamp: 2;
+				-webkit-line-clamp: 1;
 			}
-
 			.price {
 				font-size: 18px;
 				color: #e7141a;

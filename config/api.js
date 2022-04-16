@@ -15,7 +15,7 @@ export const postorder = (data) => http.post('/wx/other/postorder', data)
 
 export const hotlist = (data) => http.get('/wx/other/hotlist', data)
 export const search = (data) => http.get('/wx/other/search', data)
-
+export const getbycid = (data) => http.get('/wx/other/getbycid', data)
 export const getorderunsuccess = (data) => http.get('/wx/other/getorderunsuccess', data)
 export const getordersuccess = (data) => http.get('/wx/other/getordersuccess', data)
 export const delorder = (data) => http.get('/wx/other/delorder', data)

@@ -14,9 +14,12 @@
 				<uni-card class="uc" is-full="true" :cover="listItem.imgurl" v-for="(listItem,listIndex) in shoplist"
 					:key="listIndex" @click="to_detail(listItem.id)">
 					<view class="r">
-						
+
 						<view class="c-name">{{listItem.name}}</view>
 						<view class="c-text">{{listItem.title}}</view>
+						<view class="location">
+							位置：{{listItem.location}}
+						</view>
 						<view class="b-text">
 							<text class="price">￥{{listItem.price}}</text><text
 								class="yy">{{listItem.subscribeStatus.name}}</text>
@@ -54,7 +57,7 @@
 				shoplist: {},
 				page: 0,
 				status: 'loadmore',
-				ptype:1,
+				ptype: 1,
 				scrollTop: 0,
 				iconStyle: {
 					color: '#FFFFFF'
@@ -68,48 +71,48 @@
 			groupChange(n) {
 				if (n == '默认排序') {
 					console.log('默认')
-					this.ptype=1
-					this.page=0
+					this.ptype = 1
+					this.page = 0
 					hotlist({
 						params: {
 							page: this.page,
-							type:this.ptype
+							type: this.ptype
 						}
 					}).then((res) => {
 						this.totalPages = res.totalPages
 						this.shoplist = res.content
 					}).catch(() => {
-					
+
 					})
 				} else if (n == '价格低到高') {
 					console.log('价格低到高')
-					this.page=0
-					this.ptype=2
+					this.page = 0
+					this.ptype = 2
 					hotlist({
 						params: {
 							page: this.page,
-							type:this.ptype
+							type: this.ptype
 						}
 					}).then((res) => {
 						this.totalPages = res.totalPages
 						this.shoplist = res.content
 					}).catch(() => {
-					
+
 					})
 				} else if (n == '价格高到低') {
 					console.log('价格高到低')
-					this.page=0
-					this.ptype=3
+					this.page = 0
+					this.ptype = 3
 					hotlist({
 						params: {
 							page: this.page,
-							type:this.ptype
+							type: this.ptype
 						}
 					}).then((res) => {
 						this.totalPages = res.totalPages
 						this.shoplist = res.content
 					}).catch(() => {
-					
+
 					})
 				}
 			},
@@ -133,7 +136,7 @@
 					hotlist({
 						params: {
 							page: this.page,
-							type:this.ptype
+							type: this.ptype
 						}
 					}).then((res) => {
 						this.totalPages = res.totalPages
@@ -152,7 +155,7 @@
 			hotlist({
 				params: {
 					page: this.page,
-					type:this.ptype
+					type: this.ptype
 				}
 			}).then((res) => {
 				this.totalPages = res.totalPages
@@ -167,7 +170,7 @@
 <style lang="scss" scoped>
 	.shop {
 		margin: 0px 5px 10px 5px;
-		
+
 		/deep/.uni-card {
 			border-radius: 10px;
 			display: flex;
@@ -185,23 +188,33 @@
 				width: 150px;
 				float: right;
 			}
-			.c-name{
+
+			.c-name {
 				color: $u-main-color;
 				font-size: 20px;
 				font-weight: bold;
 				margin-bottom: 10px;
 			}
+
 			.c-text {
-				color: $u-content-color;
-				height: 85px;
+			font-size: 15px;
+			color: $u-content-color;
+			font-weight: 800;
+			height: 65px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp: 2;
+			}
+			.location{
+				
 				overflow: hidden;
 				text-overflow: ellipsis;
-				;
 				display: -webkit-box;
 				-webkit-box-orient: vertical;
-				-webkit-line-clamp: 2;
+				-webkit-line-clamp: 1;
 			}
-
 			.price {
 				font-size: 18px;
 				color: #e7141a;

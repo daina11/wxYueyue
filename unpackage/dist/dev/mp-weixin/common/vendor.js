@@ -19405,7 +19405,7 @@ module.exports = function (vm) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.delorder = exports.getordersuccess = exports.getorderunsuccess = exports.search = exports.hotlist = exports.postorder = exports.getshopbyid = exports.getshop = exports.getswiper = exports.getcategory = exports.auth = exports.sda = void 0;var http = uni.$u.http;
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.delorder = exports.getordersuccess = exports.getorderunsuccess = exports.getbycid = exports.search = exports.hotlist = exports.postorder = exports.getshopbyid = exports.getshop = exports.getswiper = exports.getcategory = exports.auth = exports.sda = void 0;var http = uni.$u.http;
 // post请求，获取菜单
 var sda = function sda(params) {var config = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};return http.get('/wx/user/login', params, config);};
 
@@ -19422,7 +19422,7 @@ var postorder = function postorder(data) {return http.post('/wx/other/postorder'
 
 var hotlist = function hotlist(data) {return http.get('/wx/other/hotlist', data);};exports.hotlist = hotlist;
 var search = function search(data) {return http.get('/wx/other/search', data);};exports.search = search;
-
+var getbycid = function getbycid(data) {return http.get('/wx/other/getbycid', data);};exports.getbycid = getbycid;
 var getorderunsuccess = function getorderunsuccess(data) {return http.get('/wx/other/getorderunsuccess', data);};exports.getorderunsuccess = getorderunsuccess;
 var getordersuccess = function getordersuccess(data) {return http.get('/wx/other/getordersuccess', data);};exports.getordersuccess = getordersuccess;
 var delorder = function delorder(data) {return http.get('/wx/other/delorder', data);};exports.delorder = delorder;

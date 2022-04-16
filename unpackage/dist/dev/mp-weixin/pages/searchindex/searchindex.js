@@ -196,6 +196,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
 var _api = __webpack_require__(/*! @/config/api.js */ 146); //
 //
 //
@@ -229,10 +232,10 @@ var _api = __webpack_require__(/*! @/config/api.js */ 146); //
 //
 //
 //
-var _default = { data: function data() {return { stext: '', totalPages: '', shoplist: {}, page: 0, status: 'loadmore', scrollTop: 0, iconStyle: { color: '#FFFFFF' } };}, onPageScroll: function onPageScroll(e) {this.scrollTop = e.scrollTop;}, methods: { search: function search() {var _this = this;console.log(this.stext);this.page = 0;(0, _api.search)({ params: { page: this.page, text: this.stext } }).then(function (res) {if (res.content == "") {_this.shoplist = "";_this.status = 'nomore';} else {
-          _this.totalPages = res.totalPages;
-          _this.shoplist = res.content;
-        }
+//
+//
+//
+var _default = { data: function data() {return { stext: '', totalPages: '', shoplist: {}, page: 0, status: 'loadmore', scrollTop: 0, iconStyle: { color: '#FFFFFF' } };}, onPageScroll: function onPageScroll(e) {this.scrollTop = e.scrollTop;}, methods: { search: function search() {var _this = this;console.log(this.stext);this.page = 0;(0, _api.search)({ params: { page: this.page, text: this.stext } }).then(function (res) {if (res.content == "") {_this.shoplist = "";_this.status = 'nomore';} else {_this.totalPages = res.totalPages;_this.shoplist = res.content;}
 
       }).catch(function () {
 

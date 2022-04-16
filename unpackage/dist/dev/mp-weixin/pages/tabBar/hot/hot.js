@@ -200,6 +200,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
 var _api = __webpack_require__(/*! @/config/api.js */ 146); //
 //
 //
@@ -234,10 +237,10 @@ var _api = __webpack_require__(/*! @/config/api.js */ 146); //
 //
 //
 //
-var _default = { data: function data() {return { radiolist1: [{ name: '默认排序' }, { name: '价格低到高' }, { name: '价格高到低' }], radiovalue1: '默认排序', totalPages: '', shoplist: {}, page: 0, status: 'loadmore', ptype: 1, scrollTop: 0, iconStyle: { color: '#FFFFFF' } };}, onPageScroll: function onPageScroll(e) {this.scrollTop = e.scrollTop;}, methods: { groupChange: function groupChange(n) {var _this = this;if (n == '默认排序') {console.log('默认');
-        this.ptype = 1;
-        this.page = 0;
-        (0, _api.hotlist)({
+//
+//
+//
+var _default = { data: function data() {return { radiolist1: [{ name: '默认排序' }, { name: '价格低到高' }, { name: '价格高到低' }], radiovalue1: '默认排序', totalPages: '', shoplist: {}, page: 0, status: 'loadmore', ptype: 1, scrollTop: 0, iconStyle: { color: '#FFFFFF' } };}, onPageScroll: function onPageScroll(e) {this.scrollTop = e.scrollTop;}, methods: { groupChange: function groupChange(n) {var _this = this;if (n == '默认排序') {console.log('默认');this.ptype = 1;this.page = 0;(0, _api.hotlist)({
           params: {
             page: this.page,
             type: this.ptype } }).

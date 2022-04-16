@@ -225,6 +225,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
 var _api = __webpack_require__(/*! @/config/api.js */ 146); //
 //
 //
@@ -272,11 +275,11 @@ var _api = __webpack_require__(/*! @/config/api.js */ 146); //
 //
 //
 //
+//
+//
+//
 var _default = { data: function data() {return { categorylist: {}, switchlist: {}, totalPages: '', shoplist: {}, page: 0, status: 'loadmore', scrollTop: 0, iconStyle: { color: '#FFFFFF' }, slable: '' };}, onPageScroll: function onPageScroll(e) {this.scrollTop = e.scrollTop;}, onReachBottom: function onReachBottom() {var _this = this;this.status = 'loading';this.page += 1;if (this.totalPages <= this.page) {this.status = 'nomore';} else {//加载下一页
-      setTimeout(function () {(0, _api.getshop)({ params: { page: _this.page } }).then(function (res) {_this.totalPages = res.totalPages;_this.shoplist = _this.shoplist.concat(res.content);}).catch(function () {});}, 800);}}, onLoad: function onLoad() {var _this2 = this;uni.setNavigationBarTitle({ title: '预餐首页' });
-
-    (0, _api.getcategory)({}).then(function (res) {
-      _this2.categorylist = res;
+      setTimeout(function () {(0, _api.getshop)({ params: { page: _this.page } }).then(function (res) {_this.totalPages = res.totalPages;_this.shoplist = _this.shoplist.concat(res.content);}).catch(function () {});}, 800);}}, onLoad: function onLoad() {var _this2 = this;uni.setNavigationBarTitle({ title: '预餐首页' });(0, _api.getcategory)({}).then(function (res) {_this2.categorylist = res;
     }).catch(function () {
 
     }),

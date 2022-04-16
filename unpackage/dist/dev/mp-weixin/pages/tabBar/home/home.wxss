@@ -44,12 +44,21 @@
   height: 150px !important;
 }
 .shop .uc .c-text.data-v-3d3a40f7 {
+  font-size: 16px;
+  font-weight: bold;
   color: #606266;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
+}
+.shop .uc .location.data-v-3d3a40f7 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
 }
 .shop .uc .price.data-v-3d3a40f7 {
   color: #e7141a;

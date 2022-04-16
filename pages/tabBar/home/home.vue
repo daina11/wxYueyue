@@ -30,6 +30,9 @@
 				<uni-card class="uc" is-full="true" :cover="listItem.imgurl" v-for="(listItem,listIndex) in shoplist"
 					:key="listIndex" @click="to_detail(listItem.id)">
 					<text class="c-text">{{listItem.title}}</text>
+					<view class="location">
+						<text>位置：{{listItem.location}}</text>
+					</view>
 					<view class="b-text">
 						<text class="price">￥{{listItem.price}}</text><text
 							class="yy">{{listItem.subscribeStatus.name}}</text>
@@ -187,12 +190,21 @@
 			}
 
 			.c-text {
+				font-size: 16px;
+				font-weight: bold;
 				color: $u-content-color;
 				overflow: hidden;
 				text-overflow: ellipsis;
 				display: -webkit-box;
 				-webkit-box-orient: vertical;
-				-webkit-line-clamp: 2;
+				-webkit-line-clamp: 1;
+			}
+			.location{
+				overflow: hidden;
+				text-overflow: ellipsis;
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 1;
 			}
 
 			.price {

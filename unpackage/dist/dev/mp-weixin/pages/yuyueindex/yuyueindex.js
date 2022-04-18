@@ -96,13 +96,13 @@ var components
 try {
   components = {
     uToast: function() {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-toast/u-toast */ "node-modules/uview-ui/components/u-toast/u-toast").then(__webpack_require__.bind(null, /*! uview-ui/components/u-toast/u-toast.vue */ 241))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-toast/u-toast */ "node-modules/uview-ui/components/u-toast/u-toast").then(__webpack_require__.bind(null, /*! uview-ui/components/u-toast/u-toast.vue */ 247))
     },
     uInput: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-input/u-input.vue */ 377))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-input/u-input.vue */ 383))
     },
     "u-Text": function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u--text/u--text */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u--text/u--text")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u--text/u--text.vue */ 385))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u--text/u--text */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u--text/u--text")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u--text/u--text.vue */ 391))
     }
   }
 } catch (e) {
@@ -175,7 +175,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _api = __webpack_require__(/*! ../../config/api.js */ 146);var times = function times() {Promise.all(/*! require.ensure | components/pretty-times/pretty-times */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/pretty-times/pretty-times")]).then((function () {return resolve(__webpack_require__(/*! ../../components/pretty-times/pretty-times.vue */ 391));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+var _api = __webpack_require__(/*! ../../config/api.js */ 146);var times = function times() {Promise.all(/*! require.ensure | components/pretty-times/pretty-times */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/pretty-times/pretty-times")]).then((function () {return resolve(__webpack_require__(/*! ../../components/pretty-times/pretty-times.vue */ 397));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
 
 
 {
@@ -184,18 +185,24 @@ var _api = __webpack_require__(/*! ../../config/api.js */ 146);var times = funct
       Openid: '',
       shopid: '',
       disTime: {
-        begin_time: "2022-04-13 15:00:00",
-        end_time: "2022-04-13 16:00:00" },
+        begin_time: "2022-04-18 15:00:00",
+        end_time: "2022-04-18 16:00:00" },
 
       phone: '' };
 
 
   },
+  onLoad: function onLoad(option) {
+    var that = this;
+    that.Openid = option.oid;
+    that.shopid = option.shopid;
+
+  },
   methods: {
     getTime: function getTime(e) {
-      if (this.phone == null || this.phone == "") {
+      if (this.phone == null || this.phone == "" || e == null || e == "暂无选择") {
         uni.showToast({
-          title: '请输入联系电话！',
+          title: '请输入联系电话和选择时间！',
           icon: 'none' });
 
       } else {
@@ -235,10 +242,21 @@ var _api = __webpack_require__(/*! ../../config/api.js */ 146);var times = funct
   components: {
     times: times },
 
-  onLoad: function onLoad(option) {
-    this.Openid = option.oid;
-    this.shopid = option.shopid;
-  } };exports.default = _default;
+  computed: {},
+
+
+  watch: {
+    beginTime: {
+      handler: function handler(newValue, oldValue) {
+        this.beginTime = newValue;
+      },
+      deep: true },
+
+    endTime: {
+      handler: function handler(newValue, oldValue) {
+        this.endTime = newValue;
+      },
+      deep: true } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

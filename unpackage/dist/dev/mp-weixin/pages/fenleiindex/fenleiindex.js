@@ -96,22 +96,22 @@ var components
 try {
   components = {
     uSwiper: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-swiper/u-swiper */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-swiper/u-swiper")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-swiper/u-swiper.vue */ 248))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-swiper/u-swiper */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-swiper/u-swiper")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-swiper/u-swiper.vue */ 254))
     },
     uSticky: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-sticky/u-sticky */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-sticky/u-sticky")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-sticky/u-sticky.vue */ 399))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-sticky/u-sticky */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-sticky/u-sticky")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-sticky/u-sticky.vue */ 405))
     },
     uTabs: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-tabs/u-tabs */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-tabs/u-tabs")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-tabs/u-tabs.vue */ 407))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-tabs/u-tabs */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-tabs/u-tabs")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-tabs/u-tabs.vue */ 413))
     },
     uniCard: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-card/components/uni-card/uni-card */ "uni_modules/uni-card/components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-card/components/uni-card/uni-card.vue */ 256))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-card/components/uni-card/uni-card */ "uni_modules/uni-card/components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-card/components/uni-card/uni-card.vue */ 262))
     },
     uLoadmore: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-loadmore/u-loadmore */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-loadmore/u-loadmore")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-loadmore/u-loadmore.vue */ 263))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-loadmore/u-loadmore */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-loadmore/u-loadmore")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-loadmore/u-loadmore.vue */ 269))
     },
     uBackTop: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-back-top/u-back-top */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-back-top/u-back-top")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-back-top/u-back-top.vue */ 271))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-back-top/u-back-top */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-back-top/u-back-top")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-back-top/u-back-top.vue */ 277))
     }
   }
 } catch (e) {
@@ -213,6 +213,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
 var _api = __webpack_require__(/*! @/config/api.js */ 146); //
 //
 //
@@ -257,11 +260,11 @@ var _api = __webpack_require__(/*! @/config/api.js */ 146); //
 //
 //
 //
+//
+//
+//
 var _default = { data: function data() {return { fenleiid: '', categorylist: {}, currentindex: '', totalPages: '', shoplist: {}, switchlist: {}, page: 0, status: 'loadmore', scrollTop: 0, iconStyle: { color: '#FFFFFF' } };}, onPageScroll: function onPageScroll(e) {this.scrollTop = e.scrollTop;}, onReachBottom: function onReachBottom() {var _this = this;this.status = 'loading';this.page += 1;if (this.totalPages <= this.page) {this.status = 'nomore';} else {//加载下一页
-      setTimeout(function () {(0, _api.getbycid)({ params: { page: _this.page, cid: _this.fenleiid } }).then(function (res) {_this.totalPages = res.totalPages;_this.shoplist = _this.shoplist.concat(res.content);}).catch(function () {});}, 800);
-    }
-  },
-  methods: {
+      setTimeout(function () {(0, _api.getbycid)({ params: { page: _this.page, cid: _this.fenleiid } }).then(function (res) {_this.totalPages = res.totalPages;_this.shoplist = _this.shoplist.concat(res.content);}).catch(function () {});}, 800);}}, methods: {
     clickswitch: function clickswitch(id) {
 
       uni.$u.route({
@@ -316,6 +319,9 @@ var _default = { data: function data() {return { fenleiid: '', categorylist: {},
     then(function (res) {
       _this3.totalPages = res.totalPages;
       _this3.shoplist = res.content;
+      if (_this3.totalPages <= _this3.page + 1) {
+        _this3.status = 'nomore';
+      }
     }).catch(function () {
 
     }),

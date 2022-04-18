@@ -121,6 +121,9 @@
 				if (res.content == "") {
 					this.status = 'nomore'
 				} else {
+					if (this.totalPages <= this.page) {
+						this.status = 'nomore'
+					}
 					this.totalPages = res.totalPages
 					this.shoplist = res.content
 				}

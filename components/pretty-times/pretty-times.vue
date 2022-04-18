@@ -125,7 +125,8 @@
 						this.initOnload()
 					}
 				}
-			}
+			},
+			
 		},
 		data() {
 			return {
@@ -146,6 +147,7 @@
 		created(props) {
 			this.selectDate = this.nowDate = currentTime().date
 			this.initOnload()
+			
 		},
 		methods: {
 			initOnload() {

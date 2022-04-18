@@ -40,6 +40,8 @@ const store = new Vuex.Store({
 		avatarurl:lifeData.avatarurl ? lifeData.avatarurl:"",
 		openid:lifeData.openid ? lifeData.openid:"",
 		city:lifeData.city ? lifeData.city:"",
+		shopbegintime:"",
+		Shopendtime:'',
 		//phone:lifeData.phone ? lifeData.phone:"",
 		//是否需要授权
 		needAuth:true,

@@ -65,6 +65,12 @@
                     "pathName": "pages/tabBar/my/my",
                     "query": "",
                     "scene": null
+                },
+                {
+                    "name": "pages/yuyueindex/yuyueindex",
+                    "pathName": "pages/yuyueindex/yuyueindex",
+                    "query": "oid=oSDjr4uMf93QGPWkbvptJjHUKLIE&shopid=12",
+                    "scene": null
                 }
             ]
         }

@@ -96,22 +96,22 @@ var components
 try {
   components = {
     uniCard: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-card/components/uni-card/uni-card */ "uni_modules/uni-card/components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-card/components/uni-card/uni-card.vue */ 256))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-card/components/uni-card/uni-card */ "uni_modules/uni-card/components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-card/components/uni-card/uni-card.vue */ 262))
     },
     uTag: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-tag/u-tag */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-tag/u-tag")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-tag/u-tag.vue */ 335))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-tag/u-tag */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-tag/u-tag")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-tag/u-tag.vue */ 341))
     },
     uIcon: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-icon/u-icon */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-icon/u-icon")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-icon/u-icon.vue */ 343))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-icon/u-icon */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-icon/u-icon")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-icon/u-icon.vue */ 349))
     },
     uParse: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-parse/u-parse */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-parse/u-parse")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-parse/u-parse.vue */ 352))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-parse/u-parse */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-parse/u-parse")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-parse/u-parse.vue */ 358))
     },
     uTabbar: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-tabbar/u-tabbar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-tabbar/u-tabbar")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-tabbar/u-tabbar.vue */ 361))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-tabbar/u-tabbar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-tabbar/u-tabbar")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-tabbar/u-tabbar.vue */ 367))
     },
     uTabbarItem: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-tabbar-item/u-tabbar-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-tabbar-item/u-tabbar-item")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-tabbar-item/u-tabbar-item.vue */ 369))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-tabbar-item/u-tabbar-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-tabbar-item/u-tabbar-item")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-tabbar-item/u-tabbar-item.vue */ 375))
     }
   }
 } catch (e) {
@@ -267,7 +267,22 @@ var _api = __webpack_require__(/*! @/config/api.js */ 146); //
 //
 //
 //
-var _default = { data: function data() {return { shopinfo: {}, content: "" };}, computed: {}, methods: { toyuding: function toyuding() {var _this = this;if (this.nickname == "" || this.nickname == null) {setTimeout(function () {var isroute = false;if (isroute) {console.log("true");uni.$u.route({ url: 'pages/yuyueindex/yuyueindex', params: { oid: _this.openid, shopid: _this.shopinfo.id, phone1: _this.phone } });} else {_this.$store.dispatch('login');console.log("false");isroute = true;}}, 500);} else {uni.$u.route({ url: 'pages/yuyueindex/yuyueindex', params: { oid: this.openid, shopid: this.shopinfo.id, phone1: this.phone } });}} },
+var _default = { data: function data() {return { shopinfo: {}, content: "", status: '' };}, computed: {}, methods: { toyuding: function toyuding() {var _this = this;this.$u.vuex('shopbegintime', this.shopinfo.begintime);this.$u.vuex('Shopendtime', this.shopinfo.endtime);if (this.status == 1) {uni.showToast({ title: '暂停预定！', icon: 'none' });} else {if (this.nickname == "" || this.nickname == null) {setTimeout(function () {var isroute = false;if (isroute) {console.log("true");uni.$u.route({ url: 'pages/yuyueindex/yuyueindex', params: { oid: _this.openid, shopid: _this.shopinfo.id, phone1: _this.phone, btime: _this.shopinfo.begintime, etime: _this.shopinfo.endtime } });} else {_this.$store.dispatch('login');console.log("false");isroute = true;}}, 500);} else {uni.$u.route({
+            url: 'pages/yuyueindex/yuyueindex',
+            params: {
+              oid: this.openid,
+              shopid: this.shopinfo.id,
+              phone1: this.phone,
+              btime: this.shopinfo.begintime,
+              etime: this.shopinfo.endtime } });
+
+
+        }
+      }
+
+    } },
+
+
   onLoad: function onLoad(option) {var _this2 = this;
     this.shopid = option.id;
     (0, _api.getshopbyid)({
@@ -277,6 +292,7 @@ var _default = { data: function data() {return { shopinfo: {}, content: "" };}, 
     then(function (res) {
       _this2.shopinfo = res;
       _this2.content = res.content;
+      _this2.status = res.subscribeStatusId;
     }).catch(function () {
 
     });

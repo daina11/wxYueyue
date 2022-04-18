@@ -3,7 +3,7 @@
 		<view class="shop">
 			<view class="card-group">
 				<uni-card padding="0" spacing="0" class="uc" is-full="true">
-					<image class="cover-image" mode="heightFix" :src="shopinfo.imgurl">
+					<image class="cover-image"  style="width:100% ; height:240px ;" :src="shopinfo.imgurl">
 						<view class="c-text">
 							<text class="">{{shopinfo.title}}</text>
 						</view>
@@ -58,6 +58,7 @@
 			return {
 				shopinfo: {},
 				content: ``,
+				status:''
 			}
 		},
 		computed: {
@@ -65,36 +66,50 @@
 		},
 		methods: {
 			 toyuding() {
-				if (this.nickname == "" || this.nickname == null) {
-
-					setTimeout(() => {
-						var isroute = false
-						if (isroute) {
-							console.log("true")
-							uni.$u.route({
-								url: 'pages/yuyueindex/yuyueindex',
-								params: {
-									oid: this.openid,
-									shopid:this.shopinfo.id,
-									phone1:this.phone
-								}
-							})
-						} else {
-							this.$store.dispatch('login')
-							console.log("false")
-							isroute = true
-						}
-					}, 500);
-				} else {
-					uni.$u.route({
-						url: 'pages/yuyueindex/yuyueindex',
-						params: {
-							oid: this.openid,
-							shopid:this.shopinfo.id,
-							phone1:this.phone
-						}
-					})
-				}
+				this.$u.vuex('shopbegintime', this.shopinfo.begintime);
+				this.$u.vuex('Shopendtime', this.shopinfo.endtime);
+				 if(this.status==1){
+					 uni.showToast({
+					 	title: '暂停预定！',
+					 	icon: 'none',
+					 });
+				 }else{
+					 if (this.nickname == "" || this.nickname == null) {
+						
+					 	setTimeout(() => {
+					 		var isroute = false
+					 		if (isroute) {
+					 			console.log("true")
+					 			uni.$u.route({
+					 				url: 'pages/yuyueindex/yuyueindex',
+					 				params: {
+					 					oid: this.openid,
+					 					shopid:this.shopinfo.id,
+					 					phone1:this.phone,
+										btime:this.shopinfo.begintime,
+										etime:this.shopinfo.endtime
+					 				}
+					 			})
+					 		} else {
+					 			this.$store.dispatch('login')
+					 			console.log("false")
+					 			isroute = true
+					 		}
+					 	}, 500);
+					 } else {
+					 	uni.$u.route({
+					 		url: 'pages/yuyueindex/yuyueindex',
+					 		params: {
+					 			oid: this.openid,
+					 			shopid:this.shopinfo.id,
+					 			phone1:this.phone,
+								btime:this.shopinfo.begintime,
+								etime:this.shopinfo.endtime
+					 		}
+					 	})
+					 }
+				 }
+				
 			}
 		},
 
@@ -107,6 +122,7 @@
 			}).then((res) => {
 				this.shopinfo = res
 				this.content = res.content
+				this.status=res.subscribeStatusId
 			}).catch(() => {
 
 			})

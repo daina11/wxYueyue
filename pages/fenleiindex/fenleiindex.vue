@@ -1,14 +1,14 @@
 <template>
 	<view class="content">
 		<view class="switch">
-			<u-swiper :list="switchlist" keyName="imgurl" indicator indicatorMode="dot" current="id" 
+			<u-swiper :list="switchlist" keyName="imgurl" indicator indicatorMode="dot" current="id"
 				@click="clickswitch()" circular>
 			</u-swiper>
 		</view>
 		<u-sticky>
-		<view class="category">
-			<u-tabs @change="slect()" :list="categorylist" lineWidth="30" lineColor="#f56c6c" :current="currentindex"
-				:activeStyle="{
+			<view class="category">
+				<u-tabs @change="slect()" :list="categorylist" lineWidth="30" lineColor="#f56c6c"
+					:current="currentindex" :activeStyle="{
 			            color: '#303133',
 			            fontWeight: 'bold',
 			            transform: 'scale(1.05)'
@@ -16,8 +16,8 @@
 			            color: '#606266',
 			            transform: 'scale(1)'
 			        }" itemStyle="padding-left: 15px; padding-right: 15px; height: 34px;">
-			</u-tabs>
-		</view>
+				</u-tabs>
+			</view>
 		</u-sticky>
 		<view class="shop">
 			<view class="card-group">
@@ -27,6 +27,9 @@
 
 						<view class="c-name">{{listItem.name}}</view>
 						<view class="c-text">{{listItem.title}}</view>
+						<view class="location">
+							位置：{{listItem.location}}
+						</view>
 						<view class="b-text">
 							<text class="price">￥{{listItem.price}}</text><text
 								class="yy">{{listItem.subscribeStatus.name}}</text>
@@ -104,7 +107,7 @@
 			},
 			slect(e) {
 				this.fenleiid = e.id
-				this.page=0
+				this.page = 0
 				getbycid({
 					params: {
 						page: this.page,
@@ -113,10 +116,10 @@
 				}).then((res) => {
 					this.totalPages = res.totalPages
 					this.shoplist = res.content
-					if ( res.totalPages <= this.page+1) {
+					if (res.totalPages <= this.page + 1) {
 						this.status = 'nomore'
 					}
-					
+
 				}).catch(() => {
 
 				})
@@ -146,14 +149,17 @@
 				}).then((res) => {
 					this.totalPages = res.totalPages
 					this.shoplist = res.content
+					if (this.totalPages <= this.page + 1) {
+						this.status = 'nomore'
+					}
 				}).catch(() => {
 
 				}),
 				getswiper({}).then((res) => {
 					this.switchlist = res
-				
+
 				}).catch(() => {
-				
+
 				})
 
 		}
@@ -208,15 +214,24 @@
 				margin-bottom: 10px;
 			}
 
-			.c-text {
-				color: $u-content-color;
-				height: 85px;
+		.c-text {
+		font-size: 15px;
+		color: $u-content-color;
+		font-weight: 800;
+		height: 65px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
+		}
+			.location {
+
 				overflow: hidden;
 				text-overflow: ellipsis;
-				;
 				display: -webkit-box;
 				-webkit-box-orient: vertical;
-				-webkit-line-clamp: 2;
+				-webkit-line-clamp: 1;
 			}
 
 			.price {
